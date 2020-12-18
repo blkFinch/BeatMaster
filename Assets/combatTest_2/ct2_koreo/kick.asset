@@ -22,4 +22,5 @@ MonoBehaviour:
     samplesPerBeat: 24000
     beatsPerMeasure: 4
     bStartNewMeasure: 1
-  mTracks: []
+  mTracks:
+  - {fileID: 11400000, guid: 98d1fccc7c0dc5e4ea11200064e1ef8e, type: 2}
