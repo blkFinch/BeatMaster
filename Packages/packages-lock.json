@@ -151,6 +151,12 @@
         "com.unity.modules.ui": "1.0.0"
       }
     },
+    "io.tinu.asepriteimporter": {
+      "version": "file:unity-aseprite-importer-master",
+      "depth": 0,
+      "source": "embedded",
+      "dependencies": {}
+    },
     "com.unity.modules.ai": {
       "version": "1.0.0",
       "depth": 0,
