@@ -1,0 +1,77 @@
+fileFormatVersion: 2
+guid: 056f7e499569ec54ab70e42b80c76b2a
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 25a63327f814cd04cbdbd7e8ae6dfcf9, type: 3}
+  textureSettings:
+    textureType: 8
+    pixelsPerUnit: 32
+    mirror: 0
+    transparentMask: 0
+    transparentColor: {r: 1, g: 0, b: 1, a: 1}
+    meshType: 1
+    extrudeEdges: 1
+    spritePivot: {x: 0.5, y: 0.5}
+    generatePhysics: 1
+    wrapMode: 1
+    filterMode: 0
+    tileSize: {x: 32, y: 32}
+    tilePadding: {x: 0, y: 0}
+    tileOffset: {x: 0, y: 0}
+  animationSettings:
+  - animationName: Stand 1
+    loopTime: 1
+    about: "Animation Type:\tForward\r\nAnimation:\tFrom: 0; To: 0"
+  - animationName: Stand 2
+    loopTime: 1
+    about: "Animation Type:\tForward\r\nAnimation:\tFrom: 1; To: 1"
+  - animationName: Stand 3
+    loopTime: 1
+    about: "Animation Type:\tForward\r\nAnimation:\tFrom: 2; To: 2"
+  - animationName: Stand 4
+    loopTime: 1
+    about: "Animation Type:\tForward\r\nAnimation:\tFrom: 3; To: 3"
+  - animationName: Walk 1
+    loopTime: 1
+    about: "Animation Type:\tForward\r\nAnimation:\tFrom: 4; To: 9"
+  - animationName: Walk 2
+    loopTime: 1
+    about: "Animation Type:\tForward\r\nAnimation:\tFrom: 10; To: 15"
+  - animationName: Walk 3
+    loopTime: 1
+    about: "Animation Type:\tForward\r\nAnimation:\tFrom: 16; To: 21"
+  - animationName: Walk 4
+    loopTime: 1
+    about: "Animation Type:\tForward\r\nAnimation:\tFrom: 22; To: 27"
+  - animationName: Idle 1
+    loopTime: 1
+    about: "Animation Type:\tForward\r\nAnimation:\tFrom: 28; To: 31"
+  - animationName: Idle 2
+    loopTime: 1
+    about: "Animation Type:\tForward\r\nAnimation:\tFrom: 32; To: 35"
+  - animationName: Idle 3
+    loopTime: 1
+    about: "Animation Type:\tForward\r\nAnimation:\tFrom: 36; To: 39"
+  - animationName: Idle 4
+    loopTime: 1
+    about: "Animation Type:\tForward\r\nAnimation:\tFrom: 40; To: 43"
+  - animationName: Dash 1
+    loopTime: 1
+    about: "Animation Type:\tForward\r\nAnimation:\tFrom: 44; To: 48"
+  - animationName: Dash 2
+    loopTime: 1
+    about: "Animation Type:\tForward\r\nAnimation:\tFrom: 49; To: 53"
+  - animationName: Dash 3
+    loopTime: 1
+    about: "Animation Type:\tForward\r\nAnimation:\tFrom: 54; To: 58"
+  - animationName: Dash 4
+    loopTime: 1
+    about: "Animation Type:\tForward\r\nAnimation:\tFrom: 59; To: 63"
+  atlas: {instanceID: 0}
+  importType: 0
+  bindType: 0
