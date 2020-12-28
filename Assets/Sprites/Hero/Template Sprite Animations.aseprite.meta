@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 056f7e499569ec54ab70e42b80c76b2a
+guid: f7a0ec3d0a1600443891317c1ee00fb4
 ScriptedImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -72,6 +72,30 @@ ScriptedImporter:
   - animationName: Dash 4
     loopTime: 1
     about: "Animation Type:\tForward\r\nAnimation:\tFrom: 59; To: 63"
+  - animationName: block 1
+    loopTime: 1
+    about: "Animation Type:\tForward\r\nAnimation:\tFrom: 64; To: 64"
+  - animationName: Block 2
+    loopTime: 1
+    about: "Animation Type:\tForward\r\nAnimation:\tFrom: 65; To: 65"
+  - animationName: Block 3
+    loopTime: 1
+    about: "Animation Type:\tForward\r\nAnimation:\tFrom: 66; To: 66"
+  - animationName: Block 4
+    loopTime: 1
+    about: "Animation Type:\tForward\r\nAnimation:\tFrom: 67; To: 67"
+  - animationName: Dodge 1
+    loopTime: 1
+    about: "Animation Type:\tForward\r\nAnimation:\tFrom: 68; To: 68"
+  - animationName: Dodge 2
+    loopTime: 1
+    about: "Animation Type:\tForward\r\nAnimation:\tFrom: 69; To: 69"
+  - animationName: Dodge 3
+    loopTime: 1
+    about: "Animation Type:\tForward\r\nAnimation:\tFrom: 70; To: 70"
+  - animationName: Dodge 4
+    loopTime: 1
+    about: "Animation Type:\tForward\r\nAnimation:\tFrom: 71; To: 71"
   atlas: {instanceID: 0}
   importType: 0
   bindType: 0

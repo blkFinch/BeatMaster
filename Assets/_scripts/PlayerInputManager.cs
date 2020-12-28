@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 
 public class PlayerInputManager : MonoBehaviour
 {
+    
     public delegate void OnAttackButton(AttackType type);
     public static event OnAttackButton onAttack;
 
@@ -40,6 +41,11 @@ public class PlayerInputManager : MonoBehaviour
             onAttack(AttackType.RED);
         }
     }
+
+    public void Move(InputAction.CallbackContext context){
+        Vector2 inputVector = context.ReadValue<Vector2>();
+        Hero.active.Move(inputVector);
+    }   
 
 }
 

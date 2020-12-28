@@ -6,6 +6,7 @@ using UnityEngine;
 public class Hero : MonoBehaviour
 {
     private Animator animator;
+    private IsometricPlayerMovement isoMovement;
     public static Hero active;
     public int damage = 10;
 
@@ -23,8 +24,13 @@ public class Hero : MonoBehaviour
     void Start()
     {
         animator = GetComponent<Animator>();
+        isoMovement = GetComponent<IsometricPlayerMovement>();
         //Sets the return position -- this should set OnEnterCombat
         startDashpos = this.gameObject.transform.position;
+    }
+
+    public void Move(Vector2 movement){
+        isoMovement.movementVector = movement;
     }
 
     public void Block(){
