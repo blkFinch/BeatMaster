@@ -4424,74 +4424,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &1473104942 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 1541200556452061944, guid: 454ee99620c315d4d83d55130f694c7e, type: 3}
-  m_PrefabInstance: {fileID: 1703982633}
-  m_PrefabAsset: {fileID: 0}
---- !u!50 &1473104949
-Rigidbody2D:
-  serializedVersion: 4
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1473104942}
-  m_BodyType: 1
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDrag: 0
-  m_AngularDrag: 0.05
-  m_GravityScale: 1
-  m_Material: {fileID: 0}
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 4
---- !u!70 &1473104950
-CapsuleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1473104942}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_Size: {x: 1.9375, y: 1.9375}
-  m_Direction: 0
---- !u!114 &1473104951
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1473104942}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14e3625a299624d4ebc15150bf80b001, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  moveSpeed: 3
-  movementVector: {x: 0, y: 0}
---- !u!114 &1473104952
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1473104942}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d6925e909decb184089ae951b3543810, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1477937315
 GameObject:
   m_ObjectHideFlags: 0
@@ -4634,14 +4566,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1541200556452061942, guid: 454ee99620c315d4d83d55130f694c7e, type: 3}
-      propertyPath: m_Sprite
-      value: 
-      objectReference: {fileID: 325364593711682210, guid: f7a0ec3d0a1600443891317c1ee00fb4, type: 3}
-    - target: {fileID: 1541200556452061942, guid: 454ee99620c315d4d83d55130f694c7e, type: 3}
-      propertyPath: m_WasSpriteAssigned
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 1541200556452061943, guid: 454ee99620c315d4d83d55130f694c7e, type: 3}
       propertyPath: m_RootOrder
       value: 1

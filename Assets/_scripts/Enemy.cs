@@ -1,9 +1,8 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using SonicBloom.Koreo;
 
-public class Enemy : MonoBehaviour
+public class Enemy : MonoBehaviour, IDamageable<int>, IKillable
 {
     public CTInstrument instrument;
     public SimpleHealthBar snareHealthBar;
@@ -35,24 +34,28 @@ public class Enemy : MonoBehaviour
         if (isDamageable && (type == attackType))
         {
             Hero.active.Attack(this.gameObject);
-            damage(Hero.active.damage);
+            Damage(Hero.active.damage);
         }
 
     }
 
-    public void damage(int damage)
+    public void Damage(int damage)
     {
         healthCurrent -= damage;
         snareHealthBar.UpdateBar(healthCurrent, healthMax);
         if (healthCurrent <= 0)
         {
-            Conductor.active.muteTrack(instrument);
+            Kill();
+        }
+    }
+
+    public void Kill(){
+        Conductor.active.muteTrack(instrument);
             //Unregester for all events before destroying object
             Koreographer.Instance.UnregisterForEvents(damageableEventTag, onDamageableEvent);
             Koreographer.Instance.UnregisterForEvents(attackEventTag, onInstrumentAttackEvent);
             PlayerInputManager.onAttack -= OnPlayerAttack;
             Destroy(this.gameObject);
-        }
     }
 
     void OnTriggerEnter2D(Collider2D other)

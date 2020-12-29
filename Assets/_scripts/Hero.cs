@@ -3,14 +3,31 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //Singleton instance of player character 
-public class Hero : MonoBehaviour
+public class Hero : MonoBehaviour, IDamageable<int>
 {
+    //COMPONENTS
     private Animator animator;
     private IsometricPlayerMovement isoMovement;
     public static Hero active;
+
+    public SimpleHealthBar playerHealthBar;
+
+    //STATS
+
+    //TODO: extract stats to serializable class
     public int damage = 10;
 
+    [SerializeField]
+    private int maxHealth = 50;
+
+    private int currentHealth;
+
+    //COMBAT FIELDS
+    private bool isBlocking;
+    public bool IsBlocking { get => isBlocking; }
     private Vector3 startDashpos; //position of character before animation
+
+
 
     void Awake()
     {
@@ -27,14 +44,27 @@ public class Hero : MonoBehaviour
         isoMovement = GetComponent<IsometricPlayerMovement>();
         //Sets the return position -- this should set OnEnterCombat
         startDashpos = this.gameObject.transform.position;
+        currentHealth = maxHealth;
+        playerHealthBar.UpdateBar(currentHealth, maxHealth);
     }
 
-    public void Move(Vector2 movement){
+    public void Damage(int damage)
+    {
+        if (!isBlocking)
+        {
+            currentHealth -= damage;
+            playerHealthBar.UpdateBar(currentHealth, maxHealth);
+        }
+    }
+
+    public void Move(Vector2 movement)
+    {
         isoMovement.movementVector = movement;
     }
 
-    public void Block(){
-        Debug.Log("player blocked");
+    public void Block(bool blockValue)
+    {
+        isBlocking = blockValue;
     }
 
     public void Attack(GameObject target)
@@ -43,7 +73,7 @@ public class Hero : MonoBehaviour
         animator.SetTrigger("dash_up_right");
 
         // Uncomment this to have hero reset where she starts her dash from
-        startDashpos = transform.position; 
+        startDashpos = transform.position;
 
         //set the target position right in front of target
         Vector3 targetPos = target.gameObject.transform.position - target.gameObject.transform.up;
@@ -59,4 +89,5 @@ public class Hero : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         transform.position = start;
     }
+
 }
