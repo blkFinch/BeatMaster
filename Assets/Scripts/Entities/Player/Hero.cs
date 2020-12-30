@@ -45,7 +45,10 @@ public class Hero : MonoBehaviour, IDamageable<int>
         //Sets the return position -- this should set OnEnterCombat
         startDashpos = this.gameObject.transform.position;
         currentHealth = maxHealth;
-        playerHealthBar.UpdateBar(currentHealth, maxHealth);
+
+
+        if(playerHealthBar != null)
+            playerHealthBar.UpdateBar(currentHealth, maxHealth);
     }
 
     public void Damage(int damage)
@@ -88,6 +91,10 @@ public class Hero : MonoBehaviour, IDamageable<int>
         transform.position = end;
         yield return new WaitForSeconds(0.5f);
         transform.position = start;
+    }
+
+    void OnCollisionEnter2D(Collision2D other) {
+        Debug.Log("COLLISION");
     }
 
 }

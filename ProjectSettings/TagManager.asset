@@ -42,6 +42,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: collision
+    uniqueID: 598875599
+    locked: 0
   - name: hero
     uniqueID: 846340799
     locked: 0
