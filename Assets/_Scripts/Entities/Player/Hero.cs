@@ -72,26 +72,10 @@ public class Hero : MonoBehaviour, IDamageable<int>
 
     public void Attack(GameObject target)
     {
-        //TODO: logic for dash direction
-        animator.SetTrigger("dash_up_right");
-
-        // Uncomment this to have hero reset where she starts her dash from
-        startDashpos = transform.position;
-
-        //set the target position right in front of target
-        Vector3 targetPos = target.gameObject.transform.position - target.gameObject.transform.up;
-        StartCoroutine(DashMove(targetPos, startDashpos));
+       isoMovement.AnimateAttack(target, startDashpos);
     }
 
-    //TODO: refactor this move to fit with beat
-    //Dashes to target, waits 0.5 secs, dash back
-    //0.5 is one beat for 120 bpm
-    private IEnumerator DashMove(Vector3 end, Vector3 start)
-    {
-        transform.position = end;
-        yield return new WaitForSeconds(0.5f);
-        transform.position = start;
-    }
+    
 
     void OnCollisionEnter2D(Collision2D other) {
         Debug.Log("COLLISION");

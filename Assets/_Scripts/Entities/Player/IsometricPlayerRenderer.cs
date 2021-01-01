@@ -16,13 +16,40 @@ public class IsometricPlayerRenderer : MonoBehaviour
     public void SetDirection(Vector2 direction)
     {
 
-        if(direction.magnitude > 0.15){
+        if (direction.magnitude > 0.15)
+        {
             lastDirection = DirectionToInt(direction, 4);
-            SetMovingDirection(lastDirection);    
-        }else{        
+            SetMovingDirection(lastDirection);
+        }
+        else
+        {
             SetIdleDirection(lastDirection);
         }
-   
+
+    }
+
+    public void SetAttackDirection(Vector2 targetDir)
+    {
+        int dir = DirectionToInt(targetDir, 4);
+        Debug.Log("atk dir : " + dir);
+        switch (dir)
+        {
+            case 0:
+                animator.Play("Attack NW");
+                break;
+
+            case 1:
+                animator.Play("Attack NE");
+                break;
+
+            case 2:
+                animator.Play("Attack SE");
+                break;
+
+            case 3:
+                animator.Play("Attack NE");
+                break;
+        }
     }
 
     private void SetMovingDirection(int dir)
@@ -52,7 +79,7 @@ public class IsometricPlayerRenderer : MonoBehaviour
         }
     }
 
-     private void SetIdleDirection(int dir)
+    private void SetIdleDirection(int dir)
     {
         switch (dir)
         {
@@ -82,21 +109,22 @@ public class IsometricPlayerRenderer : MonoBehaviour
     //Slices a circle into sections and returns index of section
     private int DirectionToInt(Vector2 move, int sliceCount)
     {
-       Vector2 normDir = move.normalized;
+        Vector2 normDir = move.normalized;
 
         //determine slices in a circle
-       float step = 360f / sliceCount;
+        float step = 360f / sliceCount;
         float halfStep = step / 2;
 
         float angle = Vector2.SignedAngle(Vector2.up, normDir);
         angle += halfStep;
 
         //Make negative angle positive and wrap around
-        if(angle < 0){
+        if (angle < 0)
+        {
             angle += 360;
         }
 
-        float stepCount = angle/step;
+        float stepCount = angle / step;
 
         return Mathf.FloorToInt(stepCount);
 

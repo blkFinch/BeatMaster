@@ -28,6 +28,10 @@ public class Enemy : MonoBehaviour, IDamageable<int>, IKillable
         PlayerInputManager.onAttack += OnPlayerAttack;
     }
 
+    void Update() {
+        float dist = (Hero.active.transform.position - transform.position).sqrMagnitude;
+    }
+
 
     public void OnPlayerAttack(AttackType type)
     {
