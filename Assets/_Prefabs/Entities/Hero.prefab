@@ -336,7 +336,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 14e3625a299624d4ebc15150bf80b001, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 3
+  moveSpeed: 5
   movementVector: {x: 0, y: 0}
 --- !u!114 &1473104952
 MonoBehaviour:

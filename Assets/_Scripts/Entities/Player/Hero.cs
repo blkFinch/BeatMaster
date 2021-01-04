@@ -67,6 +67,7 @@ public class Hero : MonoBehaviour, IDamageable<int>
 
     public void Block(bool blockValue)
     {
+        Debug.Log("is blocking = " + blockValue);
         isBlocking = blockValue;
     }
 

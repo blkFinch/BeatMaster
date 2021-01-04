@@ -1,0 +1,110 @@
+fileFormatVersion: 2
+guid: 07d9355a2ae440741b6f387aa45e23dc
+ScriptedImporter:
+  internalIDToNameTable: []
+  externalObjects: {}
+  serializedVersion: 2
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+  script: {fileID: 11500000, guid: 25a63327f814cd04cbdbd7e8ae6dfcf9, type: 3}
+  textureSettings:
+    textureType: 8
+    pixelsPerUnit: 32
+    mirror: 0
+    transparentMask: 0
+    transparentColor: {r: 1, g: 0, b: 1, a: 1}
+    meshType: 1
+    extrudeEdges: 1
+    spritePivot: {x: 0.5, y: 0.5}
+    generatePhysics: 1
+    wrapMode: 1
+    filterMode: 0
+    tileSize: {x: 32, y: 32}
+    tilePadding: {x: 0, y: 0}
+    tileOffset: {x: 0, y: 0}
+  animationSettings:
+  - animationName: Stand Down Right
+    loopTime: 1
+    about: "Animation Type:\tForward\r\nAnimation:\tFrom: 0; To: 0"
+  - animationName: Stand Down Left
+    loopTime: 1
+    about: "Animation Type:\tForward\r\nAnimation:\tFrom: 1; To: 1"
+  - animationName: Stand Up Left
+    loopTime: 1
+    about: "Animation Type:\tForward\r\nAnimation:\tFrom: 2; To: 2"
+  - animationName: Stand up right
+    loopTime: 1
+    about: "Animation Type:\tForward\r\nAnimation:\tFrom: 3; To: 3"
+  - animationName: Walk Down Right
+    loopTime: 1
+    about: "Animation Type:\tForward\r\nAnimation:\tFrom: 4; To: 9"
+  - animationName: Walk Down Left
+    loopTime: 1
+    about: "Animation Type:\tForward\r\nAnimation:\tFrom: 10; To: 15"
+  - animationName: Walk Up Left
+    loopTime: 1
+    about: "Animation Type:\tForward\r\nAnimation:\tFrom: 16; To: 21"
+  - animationName: Walk Up Right
+    loopTime: 1
+    about: "Animation Type:\tForward\r\nAnimation:\tFrom: 22; To: 27"
+  - animationName: Run Down Right
+    loopTime: 1
+    about: "Animation Type:\tForward\r\nAnimation:\tFrom: 28; To: 33"
+  - animationName: Run Down Left
+    loopTime: 1
+    about: "Animation Type:\tForward\r\nAnimation:\tFrom: 34; To: 39"
+  - animationName: Run Up Right
+    loopTime: 1
+    about: "Animation Type:\tForward\r\nAnimation:\tFrom: 40; To: 45"
+  - animationName: Run Up Left
+    loopTime: 1
+    about: "Animation Type:\tForward\r\nAnimation:\tFrom: 46; To: 51"
+  - animationName: Idle Down Right
+    loopTime: 1
+    about: "Animation Type:\tForward\r\nAnimation:\tFrom: 52; To: 55"
+  - animationName: Idle Down Left
+    loopTime: 1
+    about: "Animation Type:\tForward\r\nAnimation:\tFrom: 56; To: 59"
+  - animationName: Idle Up Left
+    loopTime: 1
+    about: "Animation Type:\tForward\r\nAnimation:\tFrom: 60; To: 63"
+  - animationName: Idle Up Right
+    loopTime: 1
+    about: "Animation Type:\tForward\r\nAnimation:\tFrom: 64; To: 67"
+  - animationName: Dash Down Right
+    loopTime: 1
+    about: "Animation Type:\tForward\r\nAnimation:\tFrom: 68; To: 72"
+  - animationName: Dash Down Left
+    loopTime: 1
+    about: "Animation Type:\tForward\r\nAnimation:\tFrom: 73; To: 77"
+  - animationName: Dash Up Left
+    loopTime: 1
+    about: "Animation Type:\tForward\r\nAnimation:\tFrom: 78; To: 82"
+  - animationName: Dash Up Right
+    loopTime: 1
+    about: "Animation Type:\tForward\r\nAnimation:\tFrom: 83; To: 87"
+  - animationName: block Down Right
+    loopTime: 1
+    about: "Animation Type:\tForward\r\nAnimation:\tFrom: 88; To: 89"
+  - animationName: Block Down Left
+    loopTime: 1
+    about: "Animation Type:\tForward\r\nAnimation:\tFrom: 90; To: 91"
+  - animationName: Block 3
+    loopTime: 1
+    about: "Animation Type:\tForward\r\nAnimation:\tFrom: 92; To: 93"
+  - animationName: Block 4
+    loopTime: 1
+    about: "Animation Type:\tForward\r\nAnimation:\tFrom: 94; To: 95"
+  - animationName: Dodge Down Right
+    loopTime: 1
+    about: "Animation Type:\tForward\r\nAnimation:\tFrom: 96; To: 96"
+  - animationName: Dodge Up Left
+    loopTime: 1
+    about: "Animation Type:\tForward\r\nAnimation:\tFrom: 98; To: 98"
+  - animationName: Dodge Up Right
+    loopTime: 1
+    about: "Animation Type:\tForward\r\nAnimation:\tFrom: 99; To: 99"
+  atlas: {instanceID: 0}
+  importType: 0
+  bindType: 0

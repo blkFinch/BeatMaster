@@ -6,6 +6,7 @@ public class IsometricPlayerRenderer : MonoBehaviour
 {
     Animator animator;
     int lastDirection = 3;
+    public float startRunSpeed = 3f;
 
     void Awake()
     {
@@ -19,7 +20,7 @@ public class IsometricPlayerRenderer : MonoBehaviour
         if (direction.magnitude > 0.15)
         {
             lastDirection = DirectionToInt(direction, 4);
-            SetMovingDirection(lastDirection);
+            SetMovingDirection(lastDirection, direction.magnitude);
         }
         else
         {
@@ -52,24 +53,31 @@ public class IsometricPlayerRenderer : MonoBehaviour
         }
     }
 
-    private void SetMovingDirection(int dir)
+    private void SetMovingDirection(int dir, float moveMagnitude)
     {
+        bool isRunning = moveMagnitude > startRunSpeed;
+
         switch (dir)
         {
             case 0:
-                animator.Play("Run NW");
+                if (isRunning) { animator.Play("Run NW"); }
+                else { animator.Play("Walk NW"); }
+
                 break;
 
             case 1:
-                animator.Play("Run SW");
+                if (isRunning) { animator.Play("Run SW"); }
+                else { animator.Play("Walk SW"); }
                 break;
 
             case 2:
-                animator.Play("Run SE");
+                if (isRunning) { animator.Play("Run SE"); }
+                else { animator.Play("Walk SE"); }
                 break;
 
             case 3:
-                animator.Play("Run NE");
+                if (isRunning) { animator.Play("Run NE"); }
+                else { animator.Play("Walk NE"); }
                 break;
 
             default:
