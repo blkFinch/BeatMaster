@@ -24,8 +24,11 @@ public class Enemy : MonoBehaviour, IDamageable<int>, IKillable
         Koreographer.Instance.RegisterForEvents(damageableEventTag, onDamageableEvent);
         Koreographer.Instance.RegisterForEvents(attackEventTag, onInstrumentAttackEvent);
         healthCurrent = healthMax;
-        snareHealthBar.UpdateBar(healthCurrent, healthMax);
+        //TODO: rename
+        if(snareHealthBar != null)
+            snareHealthBar.UpdateBar(healthCurrent, healthMax);
         PlayerInputManager.onAttack += OnPlayerAttack;
+        Conductor.active.UnmuteTrack(instrument);
     }
 
     void Update() {

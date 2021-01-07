@@ -9,7 +9,7 @@ public class LayerVolumeController : MonoBehaviour
     
 
     // Start is called before the first frame update
-    void Start()
+    void Awake() 
     {
         player = GetComponent<MultiMusicPlayer>();
     }

@@ -23,6 +23,7 @@ public class Hero : MonoBehaviour, IDamageable<int>
     private int currentHealth;
 
     //COMBAT FIELDS
+    public PlayerStateMachine playerStateMachine;
     private bool isBlocking;
     public bool IsBlocking { get => isBlocking; }
     private Vector3 startDashpos; //position of character before animation
@@ -37,9 +38,12 @@ public class Hero : MonoBehaviour, IDamageable<int>
             Destroy(this.gameObject);
         }
     }
+
     // Start is called before the first frame update
     void Start()
     {
+        playerStateMachine = new PlayerStateMachine();
+        playerStateMachine.ChangeState(new PlayerRoamState());
         animator = GetComponent<Animator>();
         isoMovement = GetComponent<IsometricPlayerMovement>();
         //Sets the return position -- this should set OnEnterCombat

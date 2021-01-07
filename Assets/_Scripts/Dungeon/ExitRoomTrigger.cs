@@ -23,8 +23,4 @@ public class ExitRoomTrigger : MonoBehaviour
         Gizmos.DrawWireCube(this.transform.position, new Vector3(1,1,1));
     }
 
-     void OnValidate() {
-        Assert.IsNotNull<SceneManager>(SceneManager.active);
-    }
-
 }

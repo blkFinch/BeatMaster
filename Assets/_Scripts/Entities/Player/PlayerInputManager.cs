@@ -41,18 +41,13 @@ public class PlayerInputManager : MonoBehaviour
         }
     }
 
-    public void PingRedAttack(InputAction.CallbackContext context)
+    public void OnRed()
     {
-        Debug.Log("red pressed");
-        if (context.performed)
-        {
-            onAttack(AttackType.RED);
-        }
+        onAttack(AttackType.RED);
     }
 
-    public void Move(InputAction.CallbackContext context){
-        Vector2 inputVector = context.ReadValue<Vector2>();
-        Hero.active.Move(inputVector);
+    public void OnMove(InputValue value){
+        Hero.active.playerStateMachine.InputStick(value);
     }   
 
 }
