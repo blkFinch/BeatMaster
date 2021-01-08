@@ -5,31 +5,81 @@ using UnityEngine.InputSystem;
 
 public class PlayerCombatState : IPlayerState
 {
-    public void Enter(){
+    //Assign targets to the face buttons
+    private Enemy redTarget;
+    private Enemy blueTarget;
+    private Enemy yellowTarget;
+
+    public void Enter()
+    {
+
+        if (EnemyFormation.active)
+        {
+            //Assign targets from formation
+            foreach (Enemy enemy in EnemyFormation.active.enemies)
+            {
+                AssignTarget(enemy);
+            }
+        }
+        else
+        {
+            Debug.Log("ERR: No enemy formation on combat enter");
+            Hero.active.ExitCombat();
+        }
+    }
+
+
+    public void Exit()
+    {
 
     }
 
-    public void Exit(){
-
+    public void ProcessInputRed()
+    {
+        if(redTarget)
+            redTarget.OnPlayerAttack();
     }
 
-    public void ProcessInputRed(){
+    public void ProcessInputGreen()
+    {
         //Process Input Button Pressed
+        //DODGE?
     }
 
-    public void ProcessInputGreen(){
-        //Process Input Button Pressed
+    public void ProcessInputBlue()
+    {
+       if(blueTarget)
+            blueTarget.OnPlayerAttack();
     }
 
-    public void ProcessInputBlue(){
-        //Process Input Button Pressed
+    public void ProcessInputYellow()
+    {
+        if(yellowTarget)
+            yellowTarget.OnPlayerAttack();
     }
 
-    public void ProcessInputYellow(){
-        //Process Input Button Pressed
+    public void ProcessInputStick(InputValue value)
+    {
+
     }
 
-    public void ProcessInputStick(InputValue value){
-       
+    //Assigns enemy to be targeted by attack button
+    private void AssignTarget(Enemy enemy)
+    {
+        switch (enemy.attackType)
+        {
+            case AttackType.RED:
+                redTarget = enemy;
+                break;
+            case AttackType.BLUE:
+                blueTarget = enemy;
+                break;
+            case AttackType.YELLOW:
+                yellowTarget = enemy;
+                break;
+            default:
+                Debug.Log("ERR INCOMPATIBLE ENEMY TYPE " + enemy.attackType);
+                break;
+        }
     }
 }

@@ -6,10 +6,7 @@ using UnityEngine.InputSystem;
 public class PlayerInputManager : MonoBehaviour
 {
     
-    public delegate void OnAttackButton(AttackType type);
-    public static event OnAttackButton onAttack;
-
-    public void OnPlayerBlock(InputAction.CallbackContext context)
+    public void OnBlock(InputAction.CallbackContext context)
     {
         if (context.performed)
         {
@@ -24,26 +21,25 @@ public class PlayerInputManager : MonoBehaviour
             }
         }
     }
-
-    public void PingBlueAttack(InputAction.CallbackContext context)
+    
+    public void OnGreen()
     {
-        if (context.performed)
-        {
-            onAttack(AttackType.BLUE);
-        }
+        Hero.active.playerStateMachine.InputGreen();
     }
 
-    public void PingYellowAttack(InputAction.CallbackContext context)
+    
+    public void OnYellow()
     {
-        if (context.performed)
-        {
-            onAttack(AttackType.YELLOW);
-        }
+        Hero.active.playerStateMachine.InputYellow();
     }
 
     public void OnRed()
     {
-        onAttack(AttackType.RED);
+        Hero.active.playerStateMachine.InputRed();
+    }
+
+    public void OnBlue(){
+        Hero.active.playerStateMachine.InputBlue();
     }
 
     public void OnMove(InputValue value){

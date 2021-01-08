@@ -80,8 +80,15 @@ public class Hero : MonoBehaviour, IDamageable<int>
        isoMovement.AnimateAttack(target, startDashpos);
     }
 
+    public void EnterCombat(){
+        playerStateMachine.ChangeState(new PlayerCombatState());
+        //stop active movement on combat entery
+        Move(new Vector2(0,0));
+    }
     
-
+    public void ExitCombat(){
+        playerStateMachine.ChangeState(new PlayerRoamState());
+    }
     void OnCollisionEnter2D(Collision2D other) {
         Debug.Log("COLLISION");
     }

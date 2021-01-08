@@ -25,20 +25,21 @@ public class Enemy : MonoBehaviour, IDamageable<int>, IKillable
         Koreographer.Instance.RegisterForEvents(attackEventTag, onInstrumentAttackEvent);
         healthCurrent = healthMax;
         //TODO: rename
-        if(snareHealthBar != null)
+        if (snareHealthBar != null)
             snareHealthBar.UpdateBar(healthCurrent, healthMax);
-        PlayerInputManager.onAttack += OnPlayerAttack;
+
         Conductor.active.UnmuteTrack(instrument);
     }
 
-    void Update() {
+    void Update()
+    {
         float dist = (Hero.active.transform.position - transform.position).sqrMagnitude;
     }
 
 
-    public void OnPlayerAttack(AttackType type)
+    public void OnPlayerAttack()
     {
-        if (isDamageable && (type == attackType))
+        if (isDamageable)
         {
             Hero.active.Attack(this.gameObject);
             Damage(Hero.active.damage);
@@ -52,17 +53,17 @@ public class Enemy : MonoBehaviour, IDamageable<int>, IKillable
         snareHealthBar.UpdateBar(healthCurrent, healthMax);
         if (healthCurrent <= 0)
         {
-            Kill();
+            EnemyFormation.active.DestructEnemy(this);
         }
     }
 
-    public void Kill(){
+    public void Kill()
+    {
         Conductor.active.muteTrack(instrument);
-            //Unregester for all events before destroying object
-            Koreographer.Instance.UnregisterForEvents(damageableEventTag, onDamageableEvent);
-            Koreographer.Instance.UnregisterForEvents(attackEventTag, onInstrumentAttackEvent);
-            PlayerInputManager.onAttack -= OnPlayerAttack;
-            Destroy(this.gameObject);
+        //Unregester for all events before destroying object
+        Koreographer.Instance.UnregisterForEvents(damageableEventTag, onDamageableEvent);
+        Koreographer.Instance.UnregisterForEvents(attackEventTag, onInstrumentAttackEvent);
+        Destroy(this.gameObject);
     }
 
     void OnTriggerEnter2D(Collider2D other)
@@ -73,9 +74,10 @@ public class Enemy : MonoBehaviour, IDamageable<int>, IKillable
         }
     }
 
-    void onInstrumentAttackEvent(KoreographyEvent evt){
-       GameObject atk = Instantiate(atkPrefab, transform.position, Quaternion.identity);
-       atk.GetComponent<Target>().target = Hero.active.gameObject.transform;
+    void onInstrumentAttackEvent(KoreographyEvent evt)
+    {
+        GameObject atk = Instantiate(atkPrefab, transform.position, Quaternion.identity);
+        atk.GetComponent<Target>().target = Hero.active.gameObject.transform;
     }
 
     void onDamageableEvent(KoreographyEvent evt)
