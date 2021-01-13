@@ -13,12 +13,7 @@ public class Hero : MonoBehaviour, IDamageable<int>
     public SimpleHealthBar playerHealthBar;
 
     //STATS
-
-    //TODO: extract stats to serializable class
-    public int damage = 10;
-
-    [SerializeField]
-    private int maxHealth = 50;
+    public PlayerStats stats;
 
     private int currentHealth;
 
@@ -48,11 +43,11 @@ public class Hero : MonoBehaviour, IDamageable<int>
         isoMovement = GetComponent<IsometricPlayerMovement>();
         //Sets the return position -- this should set OnEnterCombat
         startDashpos = this.gameObject.transform.position;
-        currentHealth = maxHealth;
+        currentHealth = stats.Hp;
 
 
         if(playerHealthBar != null)
-            playerHealthBar.UpdateBar(currentHealth, maxHealth);
+            playerHealthBar.UpdateBar(currentHealth, stats.Hp);
     }
 
     public void Damage(int damage)
@@ -60,7 +55,7 @@ public class Hero : MonoBehaviour, IDamageable<int>
         if (!isBlocking)
         {
             currentHealth -= damage;
-            playerHealthBar.UpdateBar(currentHealth, maxHealth);
+            playerHealthBar.UpdateBar(currentHealth, stats.Hp);
         }
     }
 

@@ -52,7 +52,7 @@ public class Enemy : MonoBehaviour, IDamageable<int>, IKillable
         if (isDamageable)
         {
             Hero.active.Attack(this.gameObject);
-            Damage(Hero.active.damage);
+            Damage(Hero.active.stats.Atk);
         }
 
     }
