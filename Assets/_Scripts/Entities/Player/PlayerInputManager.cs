@@ -42,6 +42,7 @@ public class PlayerInputManager : MonoBehaviour
         Hero.active.playerStateMachine.InputBlue();
     }
 
+    //Callback from Player Move Input
     public void OnMove(InputValue value){
         Hero.active.playerStateMachine.InputStick(value);
     }   

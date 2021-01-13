@@ -5,7 +5,9 @@ using SonicBloom.Koreo;
 public class Enemy : MonoBehaviour, IDamageable<int>, IKillable
 {
     public CTInstrument instrument;
-    public SimpleHealthBar snareHealthBar;
+    public SimpleHealthBar activeHealthBar;
+    public GameObject healthBar;
+    private GameObject hb;
     public int healthMax = 50;
     public int healthCurrent;
     public AttackType attackType;
@@ -24,9 +26,17 @@ public class Enemy : MonoBehaviour, IDamageable<int>, IKillable
         Koreographer.Instance.RegisterForEvents(damageableEventTag, onDamageableEvent);
         Koreographer.Instance.RegisterForEvents(attackEventTag, onInstrumentAttackEvent);
         healthCurrent = healthMax;
-        //TODO: rename
-        if (snareHealthBar != null)
-            snareHealthBar.UpdateBar(healthCurrent, healthMax);
+
+        hb = Instantiate(healthBar, transform.position, Quaternion.identity);
+        Canvas canvas = FindObjectOfType<Canvas>();
+        hb.transform.SetParent(canvas.transform);
+
+        activeHealthBar = hb.GetComponentInChildren<SimpleHealthBar>();
+
+        hb.GetComponent<HealthbarFollow>().target = this.transform;
+
+        if (activeHealthBar != null)
+            activeHealthBar.UpdateBar(healthCurrent, healthMax);
 
         Conductor.active.UnmuteTrack(instrument);
     }
@@ -50,7 +60,7 @@ public class Enemy : MonoBehaviour, IDamageable<int>, IKillable
     public void Damage(int damage)
     {
         healthCurrent -= damage;
-        snareHealthBar.UpdateBar(healthCurrent, healthMax);
+        activeHealthBar.UpdateBar(healthCurrent, healthMax);
         if (healthCurrent <= 0)
         {
             EnemyFormation.active.DestructEnemy(this);
@@ -60,6 +70,7 @@ public class Enemy : MonoBehaviour, IDamageable<int>, IKillable
     public void Kill()
     {
         Conductor.active.muteTrack(instrument);
+        Destroy(hb);
         //Unregester for all events before destroying object
         Koreographer.Instance.UnregisterForEvents(damageableEventTag, onDamageableEvent);
         Koreographer.Instance.UnregisterForEvents(attackEventTag, onInstrumentAttackEvent);
