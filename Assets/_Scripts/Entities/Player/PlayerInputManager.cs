@@ -6,20 +6,9 @@ using UnityEngine.InputSystem;
 public class PlayerInputManager : MonoBehaviour
 {
     
-    public void OnBlock(InputAction.CallbackContext context)
+    public void OnBlock(InputValue value)
     {
-        if (context.performed)
-        {
-            //Checks if context is an "OnPress" or "OnRelease" by
-            //reading the value as a float:
-            //  1 = OnPress
-            // anything else is a release
-            if(context.ReadValue<float>() < 1){
-                Hero.active.Block(false);
-            }else{
-                Hero.active.Block(true);
-            }
-        }
+        Hero.active.Block(value.isPressed);
     }
     
     public void OnGreen()
