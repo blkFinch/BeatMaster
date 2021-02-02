@@ -46,7 +46,7 @@ public class Hero : MonoBehaviour, IDamageable<int>
         currentHealth = stats.Hp;
 
 
-        if(playerHealthBar != null)
+        if (playerHealthBar != null)
             playerHealthBar.UpdateBar(currentHealth, stats.Hp);
     }
 
@@ -68,23 +68,31 @@ public class Hero : MonoBehaviour, IDamageable<int>
     {
         Debug.Log("is blocking = " + blockValue);
         isBlocking = blockValue;
+        //plays block animation if true idle if false
+        if (blockValue)
+            isoMovement.isometricPlayerRenderer.BlockAnimation();
+        else
+            isoMovement.isometricPlayerRenderer.UnblockAnimation();
     }
 
     public void Attack(GameObject target)
     {
-       isoMovement.AnimateAttack(target, startDashpos);
+        isoMovement.AnimateAttack(target, startDashpos);
     }
 
-    public void EnterCombat(){
+    public void EnterCombat()
+    {
         playerStateMachine.ChangeState(new PlayerCombatState());
         //stop active movement on combat entery
-        Move(new Vector2(0,0));
+        Move(new Vector2(0, 0));
     }
-    
-    public void ExitCombat(){
+
+    public void ExitCombat()
+    {
         playerStateMachine.ChangeState(new PlayerRoamState());
     }
-    void OnCollisionEnter2D(Collision2D other) {
+    void OnCollisionEnter2D(Collision2D other)
+    {
         Debug.Log("COLLISION");
     }
 

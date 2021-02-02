@@ -6,7 +6,7 @@ public class IsometricPlayerMovement : MonoBehaviour
 {
     public float moveSpeed = 1f;
     Rigidbody2D rb;
-    IsometricPlayerRenderer isometricPlayerRenderer;
+    public IsometricPlayerRenderer isometricPlayerRenderer;
     private bool animatorBusy = false;
 
     public Vector2 movementVector;

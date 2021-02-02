@@ -13,6 +13,14 @@ public class IsometricPlayerRenderer : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
+    public void BlockAnimation(){
+        animator.Play("Block");
+    }
+
+    public void UnblockAnimation(){
+        SetIdleDirection(lastDirection);
+    }
+
     //Sets the animator state to desired direction
     public void SetDirection(Vector2 direction)
     {
