@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   sampleName: 
   bps: 120
-  instrument: 0
-  koreography: {fileID: 0}
-  id: 0
+  instrument: 2
+  koreography: {fileID: 11400000, guid: 0aeeb1c358f3dcb46884aca9605092a0, type: 2}
+  id: 4

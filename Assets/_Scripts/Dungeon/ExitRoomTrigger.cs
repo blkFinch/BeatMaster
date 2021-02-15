@@ -8,13 +8,13 @@ public class ExitRoomTrigger : MonoBehaviour
     [SerializeField]
     private int roomToLoad;
     void Start() {
-        Assert.IsNotNull<SceneManager>(SceneManager.active);
+        Assert.IsNotNull<Dungeon.SceneManager>(Dungeon.SceneManager.active);
     }
 
    
     void OnTriggerEnter2D(Collider2D other) {
         if(other.tag == "Player"){
-            SceneManager.active.LoadRoom(roomToLoad);
+            Dungeon.SceneManager.active.LoadRoom(roomToLoad);
         }
     }
 

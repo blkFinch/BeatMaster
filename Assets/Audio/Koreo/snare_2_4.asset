@@ -10,9 +10,9 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: -2076007791, guid: aa81bbec85a3f423193272a7c6154986, type: 3}
-  m_Name: New Koreography
+  m_Name: snare_2_4
   m_EditorClassIdentifier: 
-  mSourceClip: {fileID: 0}
+  mSourceClip: {fileID: 8300000, guid: b88d3661c4e51464684a35e3d3ce7c7e, type: 3}
   mAudioFilePath: 
   mSampleRate: -1
   mIgnoreLatencyOffset: 0
