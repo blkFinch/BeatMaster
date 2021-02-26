@@ -38,7 +38,7 @@ public class Hero : MonoBehaviour, IDamageable<int>
     void Start()
     {
         playerStateMachine = new PlayerStateMachine();
-        playerStateMachine.ChangeState(new PlayerRoamState());
+        playerStateMachine.ChangeState(new PlayerDungeonState());
         animator = GetComponent<Animator>();
         isoMovement = GetComponent<IsometricPlayerMovement>();
         //Sets the return position -- this should set OnEnterCombat
@@ -75,9 +75,14 @@ public class Hero : MonoBehaviour, IDamageable<int>
             isoMovement.isometricPlayerRenderer.UnblockAnimation();
     }
 
-    public void Attack(GameObject target)
+    public void Attack()
     {
-        isoMovement.AnimateAttack(target, startDashpos);
+        Debug.Log("hero calls isoMove");
+        isoMovement.AnimateAttack();
+    }
+
+    public void TargetedAttack(GameObject target){
+        isoMovement.AnimateTargetedAttack(target, this.transform.position);
     }
 
     public void EnterCombat()

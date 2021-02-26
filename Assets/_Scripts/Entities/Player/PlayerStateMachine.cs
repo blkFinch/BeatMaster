@@ -14,7 +14,7 @@ public interface IPlayerState
     void ProcessInputStick(InputValue value);
 }
 
-public class PlayerStateMachine : MonoBehaviour
+public class PlayerStateMachine 
 {
     IPlayerState currentState;
     

@@ -8500,9 +8500,5 @@ PrefabInstance:
       propertyPath: m_Name
       value: Hero
       objectReference: {fileID: 0}
-    - target: {fileID: 1830463062602432527, guid: 454ee99620c315d4d83d55130f694c7e, type: 3}
-      propertyPath: m_NotificationBehavior
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 454ee99620c315d4d83d55130f694c7e, type: 3}

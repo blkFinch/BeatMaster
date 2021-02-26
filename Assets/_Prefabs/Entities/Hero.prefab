@@ -123,8 +123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerHealthBar: {fileID: 0}
-  damage: 10
-  maxHealth: 50
+  playerStateMachine: {fileID: 0}
 --- !u!114 &1541200556452061946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -150,7 +149,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Actions: {fileID: -944628639613478452, guid: d649a5290adb8854e97c050af5c6d0d9, type: 3}
-  m_NotificationBehavior: 2
+  m_NotificationBehavior: 0
   m_UIInputModule: {fileID: 0}
   m_DeviceLostEvent:
     m_PersistentCalls:
@@ -337,6 +336,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 5
+  isometricPlayerRenderer: {fileID: 0}
   movementVector: {x: 0, y: 0}
 --- !u!114 &1473104952
 MonoBehaviour:
@@ -350,6 +350,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d6925e909decb184089ae951b3543810, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  startRunSpeed: 3
 --- !u!61 &1355374053
 BoxCollider2D:
   m_ObjectHideFlags: 0

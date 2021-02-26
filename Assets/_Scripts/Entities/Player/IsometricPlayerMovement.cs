@@ -31,7 +31,8 @@ public class IsometricPlayerMovement : MonoBehaviour
         }
     }
 
-    public void AnimateAttack(GameObject target, Vector3 startDashpos)
+    //Animates a dash attack to a desired target
+    public void AnimateTargetedAttack(GameObject target, Vector3 startDashpos)
     {
         animatorBusy = true;
          // Uncomment this to have hero reset where she starts her dash from
@@ -41,6 +42,22 @@ public class IsometricPlayerMovement : MonoBehaviour
         Vector3 targetPos = target.gameObject.transform.position - target.gameObject.transform.up;
         isometricPlayerRenderer.SetAttackDirection(targetPos);
         StartCoroutine(DashMove(targetPos, startDashpos));
+    }
+
+    //Animate untargeted attack
+    public void AnimateAttack(){
+        Debug.Log("IsoMove calls Iso Render");
+
+        animatorBusy = true;
+        isometricPlayerRenderer.SetAttackDirection(movementVector);
+        StartCoroutine(AttackAnimationPause());
+    }
+
+    //Set this to pause for one beat. Should get BPM from MusicManager
+    //0.5 sec is one beat for 120bps
+    private IEnumerator AttackAnimationPause(){
+        yield return new WaitForSeconds(0.5f);
+        animatorBusy = false;
     }
 
     //TODO: refactor this move to fit with beat
