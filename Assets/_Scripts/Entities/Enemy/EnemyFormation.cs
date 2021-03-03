@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class EnemyFormation : MonoBehaviour
 {
-    public List<Enemy> enemies;
+    public List<Deprecated.Enemy> enemies;
 
     public static EnemyFormation active;
 
@@ -39,7 +39,7 @@ public class EnemyFormation : MonoBehaviour
         }
     }
 
-    public void DestructEnemy(Enemy enemy){
+    public void DestructEnemy(Deprecated.Enemy enemy){
         if(enemies.Remove(enemy)){
             enemy.Kill();
         }

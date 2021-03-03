@@ -123,7 +123,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerHealthBar: {fileID: 0}
-  playerStateMachine: {fileID: 0}
 --- !u!114 &1541200556452061946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -351,6 +350,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startRunSpeed: 3
+  attackZone: {fileID: 3722962916683513264, guid: d3041600296c5ea41abcbaa4b105ec25, type: 3}
 --- !u!61 &1355374053
 BoxCollider2D:
   m_ObjectHideFlags: 0

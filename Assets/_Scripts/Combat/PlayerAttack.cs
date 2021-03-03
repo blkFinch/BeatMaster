@@ -7,6 +7,13 @@ public class PlayerAttack : MonoBehaviour
     public float damageableTime = 0.5f;
     public float damage = 5f;
     // Start is called before the first frame update
+
+    void Awake() {
+        //todo: pull this out??
+        damage = Hero.active.stats.Atk;
+        Debug.Log("damage " + damage);
+    }
+
     void Start()
     {
         StartCoroutine(attackRoutine());
@@ -19,7 +26,13 @@ public class PlayerAttack : MonoBehaviour
     }
 
     void OnTriggerStay2D(Collider2D other) {
+        Enemy enemy = other.gameObject.GetComponent<Enemy>();
         
-        Destroy(other.gameObject);
+        //todo: test this on non enemy collider
+        if(enemy != null){
+            enemy.Damage(this.damage);
+            //Attack can only damage once so destroy at this point
+            Destroy(this.gameObject);
+        }
     }
 }

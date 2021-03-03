@@ -5,7 +5,7 @@ using UnityEngine;
 [System.Serializable]
 public class PlayerStats
 {
-    int atk =10; 
+    int atk =5; 
     int hp = 35;
     int xp, level;
 

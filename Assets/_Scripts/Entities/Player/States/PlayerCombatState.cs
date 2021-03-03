@@ -6,9 +6,9 @@ using UnityEngine.InputSystem;
 public class PlayerCombatState : IPlayerState
 {
     //Assign targets to the face buttons
-    private Enemy redTarget;
-    private Enemy blueTarget;
-    private Enemy yellowTarget;
+    private Deprecated.Enemy redTarget;
+    private Deprecated.Enemy blueTarget;
+    private Deprecated.Enemy yellowTarget;
 
     public void Enter()
     {
@@ -16,7 +16,7 @@ public class PlayerCombatState : IPlayerState
         if (EnemyFormation.active)
         {
             //Assign targets from formation
-            foreach (Enemy enemy in EnemyFormation.active.enemies)
+            foreach (Deprecated.Enemy enemy in EnemyFormation.active.enemies)
             {
                 AssignTarget(enemy);
             }
@@ -64,7 +64,7 @@ public class PlayerCombatState : IPlayerState
     }
 
     //Assigns enemy to be targeted by attack button
-    private void AssignTarget(Enemy enemy)
+    private void AssignTarget(Deprecated.Enemy enemy)
     {
         switch (enemy.attackType)
         {

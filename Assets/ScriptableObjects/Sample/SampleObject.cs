@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using SonicBloom.Koreo;
 
-[CreateAssetMenu(fileName = "Data", menuName = "ScriptableObjects/Sample")]
+[CreateAssetMenu(fileName = "Data", menuName = "Scriptable Objects/Sample")]
 public class SampleObject : ScriptableObject
 {
     public string sampleName;
