@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: Mermaid
   m_EditorClassIdentifier: 
   maxHealth: 10
-  sprite: {fileID: 0}
-  name: 
+  sprite: {fileID: 5916281833206745938, guid: c8ae3459a719d0b499ebba880bd298b9, type: 3}
+  name: Mermaid

@@ -9,6 +9,12 @@ public class Enemy : MonoBehaviour, IDamageable<float>, IKillable{
     public EnemyObject template;
 
     private SpriteRenderer spriteRenderer;
+    [SerializeField]
+    private EnemyHealthText hpDisplay;
+
+    //Delegate for notifying enemy damaged
+    public delegate void OnEnemyDamaged(float dam);
+    public static OnEnemyDamaged enemyDamagedDelegate;
 
     void Awake() {
         Assert.IsNotNull(template);
@@ -17,13 +23,13 @@ public class Enemy : MonoBehaviour, IDamageable<float>, IKillable{
         spriteRenderer.sprite = template.sprite;
         currentHealth = template.maxHealth;
 
-        Debug.Log("AWAKE current health: " + currentHealth);
+        hpDisplay.UpdateHpDisplay(currentHealth);
     }
 
     public void Damage(float damageTaken){
-
-         Debug.Log("DAMAGE current health: " + currentHealth);
-         Debug.Log("damageTaken = " + damageTaken);
+        //Only fire delegate if there are registered listeners
+        if(enemyDamagedDelegate != null)
+            enemyDamagedDelegate(damageTaken);
         
         currentHealth -= damageTaken;
 
@@ -31,6 +37,8 @@ public class Enemy : MonoBehaviour, IDamageable<float>, IKillable{
             Debug.Log("current health: " + currentHealth + " killing obj");
             Kill();
         }
+
+        hpDisplay.UpdateHpDisplay(currentHealth);
     }
 
     //Remember to unregister all listeners here
