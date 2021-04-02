@@ -45,6 +45,7 @@ public class Enemy : MonoBehaviour, IDamageable<float>, IKillable{
     public void Kill(){
         Destroy(this.gameObject);
     }
+
 }
 
 /*

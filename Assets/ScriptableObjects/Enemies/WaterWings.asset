@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08b0d0e5d1f0cb042b90d1888187333c, type: 3}
   m_Name: WaterWings
   m_EditorClassIdentifier: 
-  maxHealth: 15
+  maxHealth: 20
   sprite: {fileID: -4745396925895630475, guid: ae177921c0b91234ca21b69b2a687d25, type: 3}
   name: Demon

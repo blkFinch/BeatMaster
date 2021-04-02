@@ -13,6 +13,9 @@ GameObject:
   - component: {fileID: 1009572362910172036}
   - component: {fileID: 1009572362910172039}
   - component: {fileID: 1009572362910171771}
+  - component: {fileID: 7378879098413661648}
+  - component: {fileID: 3250527478862506892}
+  - component: {fileID: 1639083738}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -72,8 +75,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: 598875599
+  m_SortingLayer: 1
   m_SortingOrder: 0
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -136,8 +139,55 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   currentHealth: 0
-  template: {fileID: 11400000, guid: 207c97e9b8b30e542b95282e09434af5, type: 2}
+  template: {fileID: 11400000, guid: eccdcdd849a4401459012109d2124914, type: 2}
   hpDisplay: {fileID: 1009572363589976443}
+--- !u!114 &7378879098413661648
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1009572362910172038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d90c51d2f78a3c445b2bc4b979af6ab6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  moveTime: 1
+  doRandomMove: 0
+  moveEventTag: move_event
+--- !u!114 &3250527478862506892
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1009572362910172038}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b85bb948aefd0f4fa7096ffd7b50a18, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  thisColor: {r: 0.9811321, g: 0.06016379, b: 0.06016379, a: 0}
+--- !u!95 &1639083738
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1009572362910172038}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 0}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1009572363589977735
 GameObject:
   m_ObjectHideFlags: 0
@@ -213,8 +263,8 @@ MeshRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -286276523
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!114 &1009572363589977733
@@ -306,7 +356,7 @@ MonoBehaviour:
   m_hasFontAssetChanged: 0
   m_renderer: {fileID: 1009572363589976442}
   m_maskType: 0
-  _SortingLayerID: 0
+  _SortingLayerID: -286276523
   _SortingOrder: 0
 --- !u!114 &1009572363589976443
 MonoBehaviour:

@@ -7,5 +7,10 @@ public class EnemyObject : ScriptableObject
 {
    public float maxHealth = 10f;
    public Sprite sprite;
-   public string name;
+   public string enemyName;
+
+   //ANIMATIONS
+   public bool canAnimate;
+   public AnimatorOverrideController controller;
 }
+
