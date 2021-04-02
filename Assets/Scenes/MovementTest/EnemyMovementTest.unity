@@ -199,7 +199,7 @@ AudioSource:
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -480,9 +480,41 @@ PrefabInstance:
       propertyPath: m_Name
       value: Enemy
       objectReference: {fileID: 0}
+    - target: {fileID: 1009572362910172039, guid: 64f26fa7d64d91a45aacdd50bed12e94, type: 3}
+      propertyPath: m_BodyType
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1009572362910172039, guid: 64f26fa7d64d91a45aacdd50bed12e94, type: 3}
+      propertyPath: m_Constraints
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 1009572362910172039, guid: 64f26fa7d64d91a45aacdd50bed12e94, type: 3}
+      propertyPath: m_GravityScale
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 7378879098413661648, guid: 64f26fa7d64d91a45aacdd50bed12e94, type: 3}
+      propertyPath: moveTime
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 7378879098413661648, guid: 64f26fa7d64d91a45aacdd50bed12e94, type: 3}
+      propertyPath: doRandomMove
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7378879098413661648, guid: 64f26fa7d64d91a45aacdd50bed12e94, type: 3}
       propertyPath: moveEventTag
       value: move_event
+      objectReference: {fileID: 0}
+    - target: {fileID: 7378879098413661648, guid: 64f26fa7d64d91a45aacdd50bed12e94, type: 3}
+      propertyPath: movePattern.Array.size
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7378879098413661648, guid: 64f26fa7d64d91a45aacdd50bed12e94, type: 3}
+      propertyPath: movePattern.Array.data[1]
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 7378879098413661648, guid: 64f26fa7d64d91a45aacdd50bed12e94, type: 3}
+      propertyPath: movePattern.Array.data[2]
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 64f26fa7d64d91a45aacdd50bed12e94, type: 3}
