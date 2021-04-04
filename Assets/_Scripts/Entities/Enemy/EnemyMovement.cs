@@ -3,18 +3,36 @@ using System.Collections.Generic;
 using UnityEngine;
 using SonicBloom.Koreo;
 
+public enum MovementDirections
+{
+    NORTH, NORTHEAST, EAST, SOUTHEAST, SOUTH, SOUTHWEST, WEST, NORTHWEST
+}
+
 [RequireComponent(typeof(Enemy))]
 public class EnemyMovement : MonoBehaviour
 {
     public float moveTime = 1f;
+
+    //TODO: remove random move from move evnt
     public bool doRandomMove = false;
 
     //TODO: Move this to scriptable
     [SerializeField]
-    List<int> movePattern;
+    List<MovementDirections> idlePattern;
     private Enemy thisEnemy;
     private Animator animator;
-    
+
+    //TODO: refactor to state machine?
+    private bool isIdle = true;
+    public bool getIsIdle()
+    {
+        return isIdle;
+    }
+    public void setIdle(bool idleState)
+    {
+        isIdle = idleState;
+    }
+
 
     public string moveEventTag;
 
@@ -44,15 +62,36 @@ public class EnemyMovement : MonoBehaviour
 
     void OnMoveEvent(KoreographyEvent evt)
     {
-        Debug.Log("move event triggered");
-        if(movePattern.Count > 0){
-            //Moves move from start of list to end of list
-            int nextMove = movePattern[0];
-            movePattern.RemoveAt(0);
-            movePattern.Add(nextMove);
+
+        if (isIdle)
+        {
+            IdleMove();
+        }
+        else
+        {
+            AgroMove();
+        }
+
+    }
+
+    private void IdleMove()
+    {
+        if (idlePattern.Count > 0)
+        {
+            //Moves move from start of list
+            int nextMove = (int)idlePattern[0];
+            idlePattern.RemoveAt(0);
+            //Returns move to back of list
+            MovementDirections dir = (MovementDirections)nextMove;
+            idlePattern.Add(dir);
             move(nextMove);
         }
-        
+    }
+
+    private void AgroMove()
+    {
+        Vector3 target = Vector3.MoveTowards(this.transform.position, Hero.active.transform.position, 1f);
+        StartCoroutine(MoveOverDistance(target, moveTime));
     }
 
     public void move(int direction)
@@ -92,8 +131,8 @@ public class EnemyMovement : MonoBehaviour
 
         }
 
-        StartCoroutine(MoveOverDistance(target,moveTime));
-        
+        StartCoroutine(MoveOverDistance(target, moveTime));
+
     }
 
     void OnDestroy()
@@ -108,7 +147,7 @@ public class EnemyMovement : MonoBehaviour
 
         while (eleapsedTime < moveDuration)
         {
-            transform.position = Vector3.Lerp(startPos, target, eleapsedTime/moveDuration);
+            transform.position = Vector3.Lerp(startPos, target, eleapsedTime / moveDuration);
             eleapsedTime += Time.deltaTime;
             yield return null;
         }

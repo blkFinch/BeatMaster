@@ -129,7 +129,7 @@ public class IsometricPlayerRenderer : MonoBehaviour
 
     //Taken from  https://www.youtube.com/watch?v=tywt9tOubEY
     //Slices a circle into sections and returns index of section
-    private int DirectionToInt(Vector2 move, int sliceCount)
+    public static int DirectionToInt(Vector2 move, int sliceCount)
     {
         Vector2 normDir = move.normalized;
 

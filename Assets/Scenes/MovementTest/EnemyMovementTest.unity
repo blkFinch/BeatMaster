@@ -505,8 +505,20 @@ PrefabInstance:
       value: move_event
       objectReference: {fileID: 0}
     - target: {fileID: 7378879098413661648, guid: 64f26fa7d64d91a45aacdd50bed12e94, type: 3}
+      propertyPath: idlePattern.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7378879098413661648, guid: 64f26fa7d64d91a45aacdd50bed12e94, type: 3}
       propertyPath: movePattern.Array.size
       value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 7378879098413661648, guid: 64f26fa7d64d91a45aacdd50bed12e94, type: 3}
+      propertyPath: idlePattern.Array.data[0]
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 7378879098413661648, guid: 64f26fa7d64d91a45aacdd50bed12e94, type: 3}
+      propertyPath: idlePattern.Array.data[1]
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 7378879098413661648, guid: 64f26fa7d64d91a45aacdd50bed12e94, type: 3}
       propertyPath: movePattern.Array.data[1]

@@ -3,7 +3,8 @@ using UnityEngine;
 using UnityEngine.Assertions;
 using SonicBloom.Koreo;
 
-public class Enemy : MonoBehaviour, IDamageable<float>, IKillable{
+public class Enemy : MonoBehaviour, IDamageable<float>, IKillable
+{
 
     public float currentHealth;
     public EnemyObject template;
@@ -16,7 +17,8 @@ public class Enemy : MonoBehaviour, IDamageable<float>, IKillable{
     public delegate void OnEnemyDamaged(float dam);
     public static OnEnemyDamaged enemyDamagedDelegate;
 
-    void Awake() {
+    void Awake()
+    {
         Assert.IsNotNull(template);
 
         spriteRenderer = this.GetComponent<SpriteRenderer>();
@@ -26,14 +28,16 @@ public class Enemy : MonoBehaviour, IDamageable<float>, IKillable{
         hpDisplay.UpdateHpDisplay(currentHealth);
     }
 
-    public void Damage(float damageTaken){
+    public void Damage(float damageTaken)
+    {
         //Only fire delegate if there are registered listeners
-        if(enemyDamagedDelegate != null)
+        if (enemyDamagedDelegate != null)
             enemyDamagedDelegate(damageTaken);
-        
+
         currentHealth -= damageTaken;
 
-        if(currentHealth <= 0){
+        if (currentHealth <= 0)
+        {
             Debug.Log("current health: " + currentHealth + " killing obj");
             Kill();
         }
@@ -42,8 +46,21 @@ public class Enemy : MonoBehaviour, IDamageable<float>, IKillable{
     }
 
     //Remember to unregister all listeners here
-    public void Kill(){
+    public void Kill()
+    {
         Destroy(this.gameObject);
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            EnemyMovement mvt = this.GetComponent<EnemyMovement>();
+            if (mvt.getIsIdle())
+            {
+                mvt.setIdle(false);
+            }
+        }
     }
 
 }
