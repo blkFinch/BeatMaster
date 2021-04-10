@@ -13,14 +13,12 @@ public class EnemyMovement : MonoBehaviour
 {
     public float moveTime = 1f;
 
-    //TODO: remove random move from move evnt
-    public bool doRandomMove = false;
-
     //TODO: Move this to scriptable
     [SerializeField]
     List<MovementDirections> idlePattern;
     private Enemy thisEnemy;
     private Animator animator;
+    private SpriteRenderer sprite;
 
     //TODO: refactor to state machine?
     private bool isIdle = true;
@@ -40,16 +38,13 @@ public class EnemyMovement : MonoBehaviour
     {
         thisEnemy = GetComponent<Enemy>();
         animator = GetComponent<Animator>();
+        sprite = GetComponent<SpriteRenderer>();
     }
 
 
     // Start is called before the first frame update
     void Start()
     {
-        if (doRandomMove)
-        {
-            StartCoroutine(RandomMove());
-        }
 
         //TODO: remove this once all enemies can animate
         if (thisEnemy.template.canAnimate)
@@ -101,7 +96,6 @@ public class EnemyMovement : MonoBehaviour
         {
             case 0:
                 target += Vector3.up;
-
                 break;
             case 1:
                 target += Vector3.up + Vector3.right;
@@ -110,13 +104,13 @@ public class EnemyMovement : MonoBehaviour
                 target += Vector3.right;
                 break;
             case 3:
-                target -= Vector3.up + Vector3.right;
+                target -= Vector3.up - Vector3.right;
                 break;
             case 4:
                 target -= Vector3.up;
                 break;
             case 5:
-                target -= Vector3.up - Vector3.right;
+                target -= Vector3.up + Vector3.right;
                 break;
             case 6:
                 target -= Vector3.right;
@@ -135,6 +129,28 @@ public class EnemyMovement : MonoBehaviour
 
     }
 
+    private void setMoveAnimation(Vector2 target)
+    {
+       float deltaX = transform.position.x - target.x;
+       float deltaY = transform.position.y - target.y;
+
+       Debug.Log("delta x / y = " +deltaX + " / " + deltaY);
+        
+        if(deltaX < 0){   //Moving W
+            sprite.flipX = true;
+            animator.Play("MoveE");   
+        }else if(deltaX > 0){ //Moving E
+            sprite.flipX = false;
+            animator.Play("MoveE");
+        }else{ //Moving N or S
+            if(deltaY > 0){
+                animator.Play("MoveS");
+            }else{
+                animator.Play("MoveN");
+            }
+        }
+    }
+
     void OnDestroy()
     {
         Koreographer.Instance.UnregisterForEvents(moveEventTag, OnMoveEvent);
@@ -144,6 +160,8 @@ public class EnemyMovement : MonoBehaviour
     {
         float eleapsedTime = 0;
         Vector3 startPos = transform.position;
+        Debug.Log("target: " + target);
+        setMoveAnimation(target);
 
         while (eleapsedTime < moveDuration)
         {
@@ -151,6 +169,8 @@ public class EnemyMovement : MonoBehaviour
             eleapsedTime += Time.deltaTime;
             yield return null;
         }
+
+        animator.Play("Idle");
     }
 
     //DEBUGG test
