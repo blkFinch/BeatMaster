@@ -1,0 +1,81 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -1223223985, guid: aa81bbec85a3f423193272a7c6154986, type: 3}
+  m_Name: atk_event
+  m_EditorClassIdentifier: 
+  mEventID: snare_event
+  mEventList:
+  - mStartSample: 410586
+    mEndSample: 410586
+  - mStartSample: 501827
+    mEndSample: 501827
+  - mStartSample: 593068
+    mEndSample: 593068
+  - mStartSample: 684310
+    mEndSample: 684310
+  - mStartSample: 775551
+    mEndSample: 775551
+  - mStartSample: 866793
+    mEndSample: 866793
+  - mStartSample: 958034
+    mEndSample: 958034
+  - mStartSample: 1049275
+    mEndSample: 1049275
+  - mStartSample: 1140517
+    mEndSample: 1140517
+  - mStartSample: 1231758
+    mEndSample: 1231758
+  - mStartSample: 1323000
+    mEndSample: 1323000
+  - mStartSample: 1414241
+    mEndSample: 1414241
+  - mStartSample: 1505482
+    mEndSample: 1505482
+  - mStartSample: 1596724
+    mEndSample: 1596724
+  - mStartSample: 1687965
+    mEndSample: 1687965
+  - mStartSample: 1779206
+    mEndSample: 1779206
+  - mStartSample: 1870448
+    mEndSample: 1870448
+  - mStartSample: 1961689
+    mEndSample: 1961689
+  - mStartSample: 2052931
+    mEndSample: 2052931
+  - mStartSample: 2144172
+    mEndSample: 2144172
+  - mStartSample: 2235413
+    mEndSample: 2235413
+  - mStartSample: 2326655
+    mEndSample: 2326655
+  - mStartSample: 2417896
+    mEndSample: 2417896
+  - mStartSample: 2509137
+    mEndSample: 2509137
+  _SerializedPayloadTypes: []
+  _AssetPayloads: []
+  _AssetPayloadIdxs: 
+  _ColorPayloads: []
+  _ColorPayloadIdxs: 
+  _CurvePayloads: []
+  _CurvePayloadIdxs: 
+  _FloatPayloads: []
+  _FloatPayloadIdxs: 
+  _GradientPayloads: []
+  _GradientPayloadIdxs: 
+  _IntPayloads: []
+  _IntPayloadIdxs: 
+  _SpectrumPayloads: []
+  _SpectrumPayloadIdxs: 
+  _TextPayloads: []
+  _TextPayloadIdxs: 

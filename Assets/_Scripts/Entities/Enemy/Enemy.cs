@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.Assertions;
 using SonicBloom.Koreo;
 
+
 public class Enemy : MonoBehaviour, IDamageable<float>, IKillable
 {
 
@@ -56,9 +57,9 @@ public class Enemy : MonoBehaviour, IDamageable<float>, IKillable
         if (other.gameObject.tag == "Player")
         {
             EnemyMovement mvt = this.GetComponent<EnemyMovement>();
-            if (mvt.getIsIdle())
+            if (mvt.State == EnemyState.IDLE)
             {
-                mvt.setIdle(false);
+                mvt.EnterAgro();
             }
         }
     }

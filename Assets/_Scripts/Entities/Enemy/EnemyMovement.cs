@@ -8,6 +8,11 @@ public enum MovementDirections
     NORTH, NORTHEAST, EAST, SOUTHEAST, SOUTH, SOUTHWEST, WEST, NORTHWEST
 }
 
+public enum EnemyState
+{
+    AGGRO, IDLE
+}
+
 [RequireComponent(typeof(Enemy))]
 public class EnemyMovement : MonoBehaviour
 {
@@ -20,25 +25,18 @@ public class EnemyMovement : MonoBehaviour
     private Animator animator;
     private SpriteRenderer sprite;
 
-    //TODO: refactor to state machine?
-    private bool isIdle = true;
-    public bool getIsIdle()
-    {
-        return isIdle;
-    }
-    public void setIdle(bool idleState)
-    {
-        isIdle = idleState;
-    }
-
+    private EnemyState state;
 
     public string moveEventTag;
+    public string atkEventTag;
+    public EnemyState State { get => state; set => state = value; }
 
     void Awake()
     {
         thisEnemy = GetComponent<Enemy>();
         animator = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
+        this.State = EnemyState.IDLE;
     }
 
 
@@ -53,20 +51,38 @@ public class EnemyMovement : MonoBehaviour
         }
 
         Koreographer.Instance.RegisterForEvents(moveEventTag, OnMoveEvent);
+        Koreographer.Instance.RegisterForEvents(atkEventTag, OnAttackEvent);
+    }
+
+    public void EnterAgro(){
+        this.State = EnemyState.AGGRO;
     }
 
     void OnMoveEvent(KoreographyEvent evt)
     {
 
-        if (isIdle)
-        {
-            IdleMove();
-        }
-        else
-        {
-            AgroMove();
-        }
+      switch(State){
+            case EnemyState.IDLE:
+                IdleMove();
+                break;
+            case EnemyState.AGGRO:
+                AgroMove();
+                break;
+            default:
+                IdleMove();
+                break;
+      }
 
+    }
+
+    void OnAttackEvent(KoreographyEvent evt){
+        switch(State){
+            case EnemyState.AGGRO:
+                playAttackAnimation();
+                break;
+            default:
+                break;
+        }
     }
 
     private void IdleMove()
@@ -149,6 +165,10 @@ public class EnemyMovement : MonoBehaviour
                 animator.Play("MoveN");
             }
         }
+    }
+
+    private void playAttackAnimation(){
+        animator.Play("AtkS");
     }
 
     void OnDestroy()
