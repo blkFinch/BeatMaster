@@ -31,6 +31,8 @@ public class EnemyMovement : MonoBehaviour
     public string atkEventTag;
     public EnemyState State { get => state; set => state = value; }
 
+    private MovementDirections currentDirection;
+
     void Awake()
     {
         thisEnemy = GetComponent<Enemy>();
@@ -54,14 +56,16 @@ public class EnemyMovement : MonoBehaviour
         Koreographer.Instance.RegisterForEvents(atkEventTag, OnAttackEvent);
     }
 
-    public void EnterAgro(){
+    public void EnterAgro()
+    {
         this.State = EnemyState.AGGRO;
     }
 
     void OnMoveEvent(KoreographyEvent evt)
     {
 
-      switch(State){
+        switch (State)
+        {
             case EnemyState.IDLE:
                 IdleMove();
                 break;
@@ -71,14 +75,16 @@ public class EnemyMovement : MonoBehaviour
             default:
                 IdleMove();
                 break;
-      }
+        }
 
     }
 
-    void OnAttackEvent(KoreographyEvent evt){
-        switch(State){
+    void OnAttackEvent(KoreographyEvent evt)
+    {
+        switch (State)
+        {
             case EnemyState.AGGRO:
-                playAttackAnimation();
+                playAttackAnimation(currentDirection);
                 break;
             default:
                 break;
@@ -147,33 +153,66 @@ public class EnemyMovement : MonoBehaviour
 
     private void setMoveAnimation(Vector2 target)
     {
-       float deltaX = transform.position.x - target.x;
-       float deltaY = transform.position.y - target.y;
+        float deltaX = transform.position.x - target.x;
+        float deltaY = transform.position.y - target.y;
 
-       Debug.Log("delta x / y = " +deltaX + " / " + deltaY);
-        
-        if(deltaX < 0){   //Moving W
+        Debug.Log("delta x / y = " + deltaX + " / " + deltaY);
+
+        if (deltaX < -0.1)
+        {   //Moving W
             sprite.flipX = true;
-            animator.Play("MoveE");   
-        }else if(deltaX > 0){ //Moving E
-            sprite.flipX = false;
+            currentDirection = MovementDirections.WEST;
             animator.Play("MoveE");
-        }else{ //Moving N or S
-            if(deltaY > 0){
+        }
+        else if (deltaX > 0.1)
+        { //Moving E
+            sprite.flipX = false;
+            currentDirection = MovementDirections.EAST;
+            animator.Play("MoveE");
+        }
+        else
+        { //Moving N or S
+            if (deltaY > 0)
+            {
+                currentDirection = MovementDirections.SOUTH;
                 animator.Play("MoveS");
-            }else{
+            }
+            else
+            {
+                currentDirection = MovementDirections.NORTH;
                 animator.Play("MoveN");
             }
         }
+        Debug.Log("current dir: " + currentDirection);
     }
 
-    private void playAttackAnimation(){
-        animator.Play("AtkS");
+
+    private void playAttackAnimation(MovementDirections dir)
+    {
+        Debug.Log("Attacking: " + dir);
+        switch (dir)
+        {
+            case MovementDirections.NORTH:
+                animator.Play("AtkN");
+                break;
+            case MovementDirections.EAST:
+                sprite.flipX = true;
+                animator.Play("AtkE");
+                break;
+            case MovementDirections.WEST:
+                sprite.flipX = false;
+                animator.Play("AtkE");
+                break;
+            default:
+                animator.Play("AtkS");
+                break;
+        }
+
     }
 
     void OnDestroy()
     {
-        Koreographer.Instance.UnregisterForEvents(moveEventTag, OnMoveEvent);
+        Koreographer.Instance.UnregisterForAllEvents(this);
     }
 
     IEnumerator MoveOverDistance(Vector2 target, float moveDuration)

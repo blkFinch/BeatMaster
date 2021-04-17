@@ -566,6 +566,10 @@ PrefabInstance:
       value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 7378879098413661648, guid: 64f26fa7d64d91a45aacdd50bed12e94, type: 3}
+      propertyPath: atkEventTag
+      value: snare_event
+      objectReference: {fileID: 0}
+    - target: {fileID: 7378879098413661648, guid: 64f26fa7d64d91a45aacdd50bed12e94, type: 3}
       propertyPath: doRandomMove
       value: 0
       objectReference: {fileID: 0}
