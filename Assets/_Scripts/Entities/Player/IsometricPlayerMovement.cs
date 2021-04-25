@@ -53,6 +53,16 @@ public class IsometricPlayerMovement : MonoBehaviour
         StartCoroutine(AttackAnimationPause());
     }
 
+    public void AnimateBlock(bool isBlocking){
+        if(isBlocking){
+            isometricPlayerRenderer.BlockAnimation();
+            animatorBusy = true;
+        }else{
+            isometricPlayerRenderer.UnblockAnimation();
+            animatorBusy = false;
+        }
+    }
+
     //Set this to pause for one beat. Should get BPM from MusicManager
     //0.5 sec is one beat for 120bps
     private IEnumerator AttackAnimationPause(){

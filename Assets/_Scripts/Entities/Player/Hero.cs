@@ -23,8 +23,6 @@ public class Hero : MonoBehaviour, IDamageable<int>
     public bool IsBlocking { get => isBlocking; }
     private Vector3 startDashpos; //position of character before animation
 
-
-
     void Awake()
     {
         if (active == null) { active = this; }
@@ -78,9 +76,10 @@ public class Hero : MonoBehaviour, IDamageable<int>
         isBlocking = blockValue;
         //plays block animation if true idle if false
         if (blockValue)
-            isoMovement.isometricPlayerRenderer.BlockAnimation();
+            // spriteRenderer.sprite = blockSprite;
+            isoMovement.AnimateBlock(true);
         else
-            isoMovement.isometricPlayerRenderer.UnblockAnimation();
+            isoMovement.AnimateBlock(false);
     }
 
     public void Attack()

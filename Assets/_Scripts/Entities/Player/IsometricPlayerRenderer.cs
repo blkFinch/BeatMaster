@@ -15,11 +15,13 @@ public class IsometricPlayerRenderer : MonoBehaviour
         animator = GetComponent<Animator>();
     }
 
-    public void BlockAnimation(){
+    public void BlockAnimation()
+    {
         animator.Play("Block");
     }
 
-    public void UnblockAnimation(){
+    public void UnblockAnimation()
+    {
         SetIdleDirection(lastDirection);
     }
 

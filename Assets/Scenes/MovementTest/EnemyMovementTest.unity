@@ -402,6 +402,10 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 1541200556452061940, guid: 454ee99620c315d4d83d55130f694c7e, type: 3}
+      propertyPath: blockSprite
+      value: 
+      objectReference: {fileID: -304938462162398604, guid: 07d9355a2ae440741b6f387aa45e23dc, type: 3}
+    - target: {fileID: 1541200556452061940, guid: 454ee99620c315d4d83d55130f694c7e, type: 3}
       propertyPath: playerHealthBar
       value: 
       objectReference: {fileID: 145351772}
