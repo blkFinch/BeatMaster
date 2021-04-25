@@ -50,12 +50,20 @@ public class Hero : MonoBehaviour, IDamageable<int>
             playerHealthBar.UpdateBar(currentHealth, stats.Hp);
     }
 
+    //TODO: make a listener delegate for Damage functions
     public void Damage(int damage)
     {
         if (!isBlocking)
         {
             currentHealth -= damage;
-            playerHealthBar.UpdateBar(currentHealth, stats.Hp);
+            if (playerHealthBar != null)
+                playerHealthBar.UpdateBar(currentHealth, stats.Hp);
+            Debug.Log("Damaged for: " + damage);
+        }
+        Debug.Log("Damage blocked");
+
+        if (currentHealth < 0){
+            Destroy(this.gameObject);
         }
     }
 

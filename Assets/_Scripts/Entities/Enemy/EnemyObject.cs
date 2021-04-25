@@ -6,11 +6,15 @@ using UnityEngine;
 public class EnemyObject : ScriptableObject
 {
    public float maxHealth = 10f;
+   [SerializeField]
+   private int atk = 5;
    public Sprite sprite;
    public string enemyName;
 
    //ANIMATIONS
    public bool canAnimate;
    public AnimatorOverrideController controller;
+
+    public int Atk { get => atk; set => atk = value; }
 }
 

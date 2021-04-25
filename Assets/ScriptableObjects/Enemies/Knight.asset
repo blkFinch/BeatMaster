@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Knight
   m_EditorClassIdentifier: 
   maxHealth: 15
+  atk: 2
   sprite: {fileID: 0}
   enemyName: Knight
   canAnimate: 1

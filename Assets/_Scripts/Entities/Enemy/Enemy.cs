@@ -8,6 +8,7 @@ public class Enemy : MonoBehaviour, IDamageable<float>, IKillable
 {
 
     public float currentHealth;
+    public float atk;
     public EnemyObject template;
 
     private SpriteRenderer spriteRenderer;
@@ -25,7 +26,7 @@ public class Enemy : MonoBehaviour, IDamageable<float>, IKillable
         spriteRenderer = this.GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = template.sprite;
         currentHealth = template.maxHealth;
-
+        // atk = template.Atk;
         hpDisplay.UpdateHpDisplay(currentHealth);
     }
 

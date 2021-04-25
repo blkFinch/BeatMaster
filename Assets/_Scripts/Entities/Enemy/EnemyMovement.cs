@@ -25,6 +25,9 @@ public class EnemyMovement : MonoBehaviour
     private Animator animator;
     private SpriteRenderer sprite;
 
+    [SerializeField]
+    private GameObject attackZone;
+
     private EnemyState state;
 
     public string moveEventTag;
@@ -39,6 +42,7 @@ public class EnemyMovement : MonoBehaviour
         animator = GetComponent<Animator>();
         sprite = GetComponent<SpriteRenderer>();
         this.State = EnemyState.IDLE;
+        attackZone.GetComponent<EnemyAttack>().damage = thisEnemy.template.Atk;
     }
 
 
@@ -159,15 +163,15 @@ public class EnemyMovement : MonoBehaviour
         Debug.Log("delta x / y = " + deltaX + " / " + deltaY);
 
         if (deltaX < -0.1)
-        {   //Moving W
+        {   //Moving E
             sprite.flipX = true;
-            currentDirection = MovementDirections.WEST;
+            currentDirection = MovementDirections.EAST;
             animator.Play("MoveE");
         }
         else if (deltaX > 0.1)
-        { //Moving E
+        { //Moving W
             sprite.flipX = false;
-            currentDirection = MovementDirections.EAST;
+            currentDirection = MovementDirections.WEST;
             animator.Play("MoveE");
         }
         else
@@ -194,17 +198,21 @@ public class EnemyMovement : MonoBehaviour
         {
             case MovementDirections.NORTH:
                 animator.Play("AtkN");
+                Instantiate(attackZone, this.transform.position + transform.up, Quaternion.identity);
                 break;
             case MovementDirections.EAST:
-                sprite.flipX = true;
-                animator.Play("AtkE");
-                break;
-            case MovementDirections.WEST:
                 sprite.flipX = false;
                 animator.Play("AtkE");
+                Instantiate(attackZone, this.transform.position + transform.right, Quaternion.identity);
+                break;
+            case MovementDirections.WEST:
+                sprite.flipX = true;
+                animator.Play("AtkE");
+                Instantiate(attackZone, this.transform.position - transform.right, Quaternion.identity);
                 break;
             default:
                 animator.Play("AtkS");
+                Instantiate(attackZone, this.transform.position - transform.up, Quaternion.identity);
                 break;
         }
 
