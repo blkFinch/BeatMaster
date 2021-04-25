@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Assertions;
 using SonicBloom.Koreo;
 
 public enum MovementDirections
@@ -16,6 +17,10 @@ public enum EnemyState
 [RequireComponent(typeof(Enemy))]
 public class EnemyMovement : MonoBehaviour
 {
+
+     //todo: move to SO
+    [SerializeField]
+    AudioClip atkSound;
     public float moveTime = 1f;
 
     //TODO: Move this to scriptable
@@ -23,6 +28,7 @@ public class EnemyMovement : MonoBehaviour
     List<MovementDirections> idlePattern;
     private Enemy thisEnemy;
     private Animator animator;
+    private AudioSource audioSource;
     private SpriteRenderer sprite;
 
     [SerializeField]
@@ -38,11 +44,15 @@ public class EnemyMovement : MonoBehaviour
 
     void Awake()
     {
+        
+
         thisEnemy = GetComponent<Enemy>();
         animator = GetComponent<Animator>();
+        audioSource = GetComponent<AudioSource>();
         sprite = GetComponent<SpriteRenderer>();
         this.State = EnemyState.IDLE;
         attackZone.GetComponent<EnemyAttack>().damage = thisEnemy.template.Atk;
+
     }
 
 
@@ -89,6 +99,7 @@ public class EnemyMovement : MonoBehaviour
         {
             case EnemyState.AGGRO:
                 playAttackAnimation(currentDirection);
+                if(atkSound){ audioSource.clip = atkSound; audioSource.Play(); }
                 break;
             default:
                 break;

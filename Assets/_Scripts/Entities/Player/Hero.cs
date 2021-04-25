@@ -7,6 +7,7 @@ public class Hero : MonoBehaviour, IDamageable<int>
 {
     //COMPONENTS
     private Animator animator;
+    private AudioSource audio;
     private IsometricPlayerMovement isoMovement;
     public static Hero active;
 
@@ -21,6 +22,8 @@ public class Hero : MonoBehaviour, IDamageable<int>
     public PlayerStateMachine playerStateMachine;
     private bool isBlocking;
     public bool IsBlocking { get => isBlocking; }
+
+    public AudioClip heroAtkSound;
     private Vector3 startDashpos; //position of character before animation
 
     void Awake()
@@ -38,6 +41,7 @@ public class Hero : MonoBehaviour, IDamageable<int>
         playerStateMachine = new PlayerStateMachine();
         playerStateMachine.ChangeState(new PlayerDungeonState());
         animator = GetComponent<Animator>();
+        audio = GetComponent<AudioSource>();
         isoMovement = GetComponent<IsometricPlayerMovement>();
         //Sets the return position -- this should set OnEnterCombat
         startDashpos = this.gameObject.transform.position;
@@ -84,7 +88,8 @@ public class Hero : MonoBehaviour, IDamageable<int>
 
     public void Attack()
     {
-        Debug.Log("hero calls isoMove");
+        audio.clip = heroAtkSound;
+        audio.Play();
         isoMovement.AnimateAttack();
     }
 

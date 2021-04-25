@@ -6,7 +6,6 @@ using SonicBloom.Koreo;
 
 public class Enemy : MonoBehaviour, IDamageable<float>, IKillable
 {
-
     public float currentHealth;
     public float atk;
     public EnemyObject template;
