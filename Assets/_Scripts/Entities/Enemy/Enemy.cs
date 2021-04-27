@@ -9,10 +9,15 @@ public class Enemy : MonoBehaviour, IDamageable<float>, IKillable
     public float currentHealth;
     public float atk;
     public EnemyObject template;
+    public AttackType type;
+    public GameObject targetRingPrefab;
+    public string damageableTag;
 
     private SpriteRenderer spriteRenderer;
     [SerializeField]
     private EnemyHealthText hpDisplay;
+    private EnemyMovement mvt;
+     private bool isDamageable = false;
 
     //Delegate for notifying enemy damaged
     public delegate void OnEnemyDamaged(float dam);
@@ -25,8 +30,13 @@ public class Enemy : MonoBehaviour, IDamageable<float>, IKillable
         spriteRenderer = this.GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = template.sprite;
         currentHealth = template.maxHealth;
+        mvt = this.GetComponent<EnemyMovement>();
         // atk = template.Atk;
         hpDisplay.UpdateHpDisplay(currentHealth);
+    }
+
+    void Start() {     
+        Koreographer.Instance.RegisterForEvents(damageableTag, onDamageableEvent);
     }
 
     public void Damage(float damageTaken)
@@ -35,7 +45,8 @@ public class Enemy : MonoBehaviour, IDamageable<float>, IKillable
         if (enemyDamagedDelegate != null)
             enemyDamagedDelegate(damageTaken);
 
-        currentHealth -= damageTaken;
+        if(isDamageable)
+            currentHealth -= damageTaken;
 
         if (currentHealth <= 0)
         {
@@ -45,6 +56,12 @@ public class Enemy : MonoBehaviour, IDamageable<float>, IKillable
 
         hpDisplay.UpdateHpDisplay(currentHealth);
     }
+
+    void onDamageableEvent(KoreographyEvent evt)
+        {
+            if(mvt.State == EnemyState.COMBAT)
+                Instantiate(targetRingPrefab, this.transform.position, Quaternion.identity);
+        }
 
     //Remember to unregister all listeners here
     public void Kill()
@@ -56,13 +73,29 @@ public class Enemy : MonoBehaviour, IDamageable<float>, IKillable
     {
         if (other.gameObject.tag == "Player")
         {
-            EnemyMovement mvt = this.GetComponent<EnemyMovement>();
+            
             if (mvt.State == EnemyState.IDLE)
             {
-                mvt.EnterAgro();
+                mvt.EnterCombat();
             }
+            EnemyManager.active.RegisterCombatEnemy(this);
+            Hero.active.EnterCombat();
         }
     }
+
+    public void DamageableEvent(){
+        Debug.Log("damagable event");
+        StartCoroutine("CanHitWindow");
+    }
+
+    IEnumerator CanHitWindow()
+        {
+            isDamageable = true;
+            spriteRenderer.color = Color.green;
+            yield return new WaitForSeconds(SongInfo.active.secondsPerBeat);
+            isDamageable = false;
+            spriteRenderer.color = Color.white;
+        }
 
 }
 

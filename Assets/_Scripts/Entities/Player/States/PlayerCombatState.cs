@@ -6,24 +6,20 @@ using UnityEngine.InputSystem;
 public class PlayerCombatState : IPlayerState
 {
     //Assign targets to the face buttons
-    private Deprecated.Enemy redTarget;
-    private Deprecated.Enemy blueTarget;
-    private Deprecated.Enemy yellowTarget;
+    private Enemy redTarget;
+    private Enemy blueTarget;
+    private Enemy yellowTarget;
 
     public void Enter()
     {
 
-        if (EnemyFormation.active)
+        if (EnemyManager.active.GetActiveEnemy())
         {
-            //Assign targets from formation
-            foreach (Deprecated.Enemy enemy in EnemyFormation.active.enemies)
-            {
-                AssignTarget(enemy);
-            }
+            AssignTarget(EnemyManager.active.GetActiveEnemy());
         }
         else
         {
-            Debug.Log("ERR: No enemy formation on combat enter");
+            Debug.Log("ERR: No active enemy on combat enter");
             Hero.active.ExitCombat();
         }
     }
@@ -36,8 +32,9 @@ public class PlayerCombatState : IPlayerState
 
     public void ProcessInputRed()
     {
-        if(redTarget)
-            redTarget.OnPlayerAttack();
+        if (redTarget)
+            Hero.active.TargetedAttack(redTarget.gameObject);
+        // redTarget.OnPlayerAttack();
     }
 
     public void ProcessInputGreen()
@@ -48,14 +45,16 @@ public class PlayerCombatState : IPlayerState
 
     public void ProcessInputBlue()
     {
-       if(blueTarget)
-            blueTarget.OnPlayerAttack();
+        if (blueTarget)
+            Hero.active.TargetedAttack(blueTarget.gameObject);
+        // blueTarget.OnPlayerAttack();
     }
 
     public void ProcessInputYellow()
     {
         if(yellowTarget)
-            yellowTarget.OnPlayerAttack();
+            Hero.active.TargetedAttack(yellowTarget.gameObject);
+        // yellowTarget.OnPlayerAttack();
     }
 
     public void ProcessInputStick(InputValue value)
@@ -64,9 +63,9 @@ public class PlayerCombatState : IPlayerState
     }
 
     //Assigns enemy to be targeted by attack button
-    private void AssignTarget(Deprecated.Enemy enemy)
+    private void AssignTarget(Enemy enemy)
     {
-        switch (enemy.attackType)
+        switch (enemy.type)
         {
             case AttackType.RED:
                 redTarget = enemy;
@@ -78,7 +77,7 @@ public class PlayerCombatState : IPlayerState
                 yellowTarget = enemy;
                 break;
             default:
-                Debug.Log("ERR INCOMPATIBLE ENEMY TYPE " + enemy.attackType);
+                Debug.Log("ERR INCOMPATIBLE ENEMY TYPE " + enemy.type);
                 break;
         }
     }

@@ -11,7 +11,7 @@ public enum MovementDirections
 
 public enum EnemyState
 {
-    AGGRO, IDLE
+    AGGRO, IDLE, COMBAT
 }
 
 [RequireComponent(typeof(Enemy))]
@@ -75,6 +75,10 @@ public class EnemyMovement : MonoBehaviour
         this.State = EnemyState.AGGRO;
     }
 
+    public void EnterCombat(){
+        this.State = EnemyState.COMBAT;
+    }
+
     void OnMoveEvent(KoreographyEvent evt)
     {
 
@@ -85,6 +89,8 @@ public class EnemyMovement : MonoBehaviour
                 break;
             case EnemyState.AGGRO:
                 AgroMove();
+                break;
+            case EnemyState.COMBAT:
                 break;
             default:
                 IdleMove();
@@ -97,13 +103,28 @@ public class EnemyMovement : MonoBehaviour
     {
         switch (State)
         {
-            case EnemyState.AGGRO:
-                playAttackAnimation(currentDirection);
-                if(atkSound){ audioSource.clip = atkSound; audioSource.Play(); }
+            case EnemyState.COMBAT:
+                AnimateDashAttack();
                 break;
             default:
                 break;
         }
+    }
+
+    private void AnimateDashAttack(){
+        Vector3 startPos = this.transform.position;
+        Vector3 target = Hero.active.transform.position + Hero.active.transform.up;
+        StartCoroutine(DashAttack(target, startPos));
+    }
+
+    //todo: this only atacks down, should change attack direction and target
+    //relative to player position
+    private IEnumerator DashAttack(Vector3 end, Vector3 start){
+        transform.position = end;
+        playAttackAnimation(MovementDirections.SOUTH);
+        if(atkSound){ audioSource.clip = atkSound; audioSource.Play(); }
+        yield return new WaitForSeconds(SongInfo.active.secondsPerBeat);
+        transform.position = start;
     }
 
     private void IdleMove()
@@ -171,7 +192,7 @@ public class EnemyMovement : MonoBehaviour
         float deltaX = transform.position.x - target.x;
         float deltaY = transform.position.y - target.y;
 
-        Debug.Log("delta x / y = " + deltaX + " / " + deltaY);
+        // Debug.Log("delta x / y = " + deltaX + " / " + deltaY);
 
         if (deltaX < -0.1)
         {   //Moving E
@@ -198,13 +219,13 @@ public class EnemyMovement : MonoBehaviour
                 animator.Play("MoveN");
             }
         }
-        Debug.Log("current dir: " + currentDirection);
+        // Debug.Log("current dir: " + currentDirection);
     }
 
 
     private void playAttackAnimation(MovementDirections dir)
     {
-        Debug.Log("Attacking: " + dir);
+        // Debug.Log("Attacking: " + dir);
         switch (dir)
         {
             case MovementDirections.NORTH:
@@ -238,7 +259,7 @@ public class EnemyMovement : MonoBehaviour
     {
         float eleapsedTime = 0;
         Vector3 startPos = transform.position;
-        Debug.Log("target: " + target);
+        // Debug.Log("target: " + target);
         setMoveAnimation(target);
 
         while (eleapsedTime < moveDuration)

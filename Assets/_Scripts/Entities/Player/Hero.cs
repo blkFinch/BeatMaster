@@ -46,7 +46,7 @@ public class Hero : MonoBehaviour, IDamageable<int>
         //Sets the return position -- this should set OnEnterCombat
         startDashpos = this.gameObject.transform.position;
         currentHealth = stats.Hp;
-
+        Debug.Log("current health is " +  currentHealth);
 
         if (playerHealthBar != null)
             playerHealthBar.UpdateBar(currentHealth, stats.Hp);
@@ -94,6 +94,8 @@ public class Hero : MonoBehaviour, IDamageable<int>
     }
 
     public void TargetedAttack(GameObject target){
+        audio.clip = heroAtkSound;
+        audio.Play();
         isoMovement.AnimateTargetedAttack(target, this.transform.position);
     }
 

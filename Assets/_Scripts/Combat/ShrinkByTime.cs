@@ -5,13 +5,13 @@ using UnityEngine;
 public class ShrinkByTime : MonoBehaviour
 {
     public Vector3 targetScale;
-    public int bpm = 120;
+    // public int bpm = 120;
     public bool destroyAfterShrink = true;
     // Start is called before the first frame update
     void Start()
     {
-        float lead = (bpm/60);
-        lead = lead/4;
+        // float lead = (bpm/60);
+        float lead = SongInfo.active.secondsPerBeat;
         StartCoroutine(ShrinkOverSeconds(targetScale, lead));
     }
 

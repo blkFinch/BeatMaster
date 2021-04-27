@@ -25,6 +25,7 @@ public class EnemyAttack : MonoBehaviour
         if(other.gameObject.tag == "Player"){
             Debug.Log("Enemy attacking for " + damage);
             Hero.active.Damage(damage);
+            Destroy(this.gameObject);
         }
     }
 }

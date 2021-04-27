@@ -77,7 +77,7 @@ public class IsometricPlayerMovement : MonoBehaviour
     {
         transform.position = end;
         rb.constraints = RigidbodyConstraints2D.FreezeAll;
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(SongInfo.active.secondsPerBeat);
         transform.position = start;
         rb.constraints = RigidbodyConstraints2D.FreezeRotation;
         animatorBusy = false;
