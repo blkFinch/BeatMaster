@@ -13,15 +13,16 @@ public class PlayerCombatState : IPlayerState
     public void Enter()
     {
 
-        if (EnemyManager.active.GetActiveEnemy())
-        {
-            AssignTarget(EnemyManager.active.GetActiveEnemy());
-        }
-        else
-        {
-            Debug.Log("ERR: No active enemy on combat enter");
-            Hero.active.ExitCombat();
-        }
+        //todo: rather than check target on every button press, simply add new target every time a new enemy enters combat
+        // if (EnemyManager.active.GetActiveEnemy())
+        // {
+        //     AssignTarget(EnemyManager.active.GetActiveEnemy());
+        // }
+        // else
+        // {
+        //     Debug.LogError("ERR: No active enemy on combat enter");
+        //     Hero.active.ExitCombat();
+        // }
     }
 
 
@@ -32,7 +33,7 @@ public class PlayerCombatState : IPlayerState
 
     public void ProcessInputRed()
     {
-        if (redTarget)
+        if ( redTarget = EnemyManager.active.GetRedEnemy())
             Hero.active.TargetedAttack(redTarget.gameObject);
         // redTarget.OnPlayerAttack();
     }
@@ -45,14 +46,14 @@ public class PlayerCombatState : IPlayerState
 
     public void ProcessInputBlue()
     {
-        if (blueTarget)
+        if (blueTarget = EnemyManager.active.GetBlueEnemy())
             Hero.active.TargetedAttack(blueTarget.gameObject);
         // blueTarget.OnPlayerAttack();
     }
 
     public void ProcessInputYellow()
     {
-        if(yellowTarget)
+        if(yellowTarget = EnemyManager.active.GetYellowEnemy())
             Hero.active.TargetedAttack(yellowTarget.gameObject);
         // yellowTarget.OnPlayerAttack();
     }

@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3213571436267067760}
   - component: {fileID: 3213571436267067762}
   - component: {fileID: 7530121448467490157}
-  m_Layer: 0
+  m_Layer: 5
   m_Name: ShrinkingRingBlue
   m_TagString: TargetRing
   m_Icon: {fileID: 0}
@@ -70,8 +70,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -286276523
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 7cd5ac2a9640e344da3aa3cb7078403b, type: 3}
   m_Color: {r: 0.051397298, g: 0.990566, b: 0.92425483, a: 0.22745098}
@@ -97,7 +97,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   targetScale: {x: 0.15, y: 0.15, z: 0.15}
-  bpm: 120
   destroyAfterShrink: 1
 --- !u!68 &7530121448467490157
 EdgeCollider2D:

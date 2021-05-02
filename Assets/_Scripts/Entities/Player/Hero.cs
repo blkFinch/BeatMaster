@@ -22,9 +22,13 @@ public class Hero : MonoBehaviour, IDamageable<int>
     public PlayerStateMachine playerStateMachine;
     private bool isBlocking;
     public bool IsBlocking { get => isBlocking; }
+     public Vector3 startDashpos; //position of character before animation
 
+    //SOUNDS
     public AudioClip heroAtkSound;
-    private Vector3 startDashpos; //position of character before animation
+    public GameObject syncedBlockLoop;
+    private GameObject activeBlockLoop;
+   
 
     void Awake()
     {
@@ -46,10 +50,16 @@ public class Hero : MonoBehaviour, IDamageable<int>
         //Sets the return position -- this should set OnEnterCombat
         startDashpos = this.gameObject.transform.position;
         currentHealth = stats.Hp;
-        Debug.Log("current health is " +  currentHealth);
+        Debug.Log("current health is " + currentHealth);
 
         if (playerHealthBar != null)
             playerHealthBar.UpdateBar(currentHealth, stats.Hp);
+
+        //DELEGATES register
+        if (EnemyManager.active)
+        {
+            EnemyManager.enemyRegisteredDelegate += EnterCombat;
+        }
     }
 
     //TODO: make a listener delegate for Damage functions
@@ -64,7 +74,8 @@ public class Hero : MonoBehaviour, IDamageable<int>
         }
         Debug.Log("Damage blocked");
 
-        if (currentHealth < 0){
+        if (currentHealth < 0)
+        {
             Destroy(this.gameObject);
         }
     }
@@ -76,14 +87,18 @@ public class Hero : MonoBehaviour, IDamageable<int>
 
     public void Block(bool blockValue)
     {
-        Debug.Log("is blocking = " + blockValue);
         isBlocking = blockValue;
         //plays block animation if true idle if false
-        if (blockValue)
+        if (blockValue){
             // spriteRenderer.sprite = blockSprite;
             isoMovement.AnimateBlock(true);
-        else
+            activeBlockLoop = Instantiate(syncedBlockLoop, transform.position, Quaternion.identity);
+        }
+        else{
             isoMovement.AnimateBlock(false);
+            Destroy(activeBlockLoop);
+        }
+            
     }
 
     public void Attack()
@@ -93,7 +108,8 @@ public class Hero : MonoBehaviour, IDamageable<int>
         isoMovement.AnimateAttack();
     }
 
-    public void TargetedAttack(GameObject target){
+    public void TargetedAttack(GameObject target)
+    {
         audio.clip = heroAtkSound;
         audio.Play();
         isoMovement.AnimateTargetedAttack(target, this.transform.position);
@@ -101,9 +117,13 @@ public class Hero : MonoBehaviour, IDamageable<int>
 
     public void EnterCombat()
     {
-        playerStateMachine.ChangeState(new PlayerCombatState());
-        //stop active movement on combat entery
-        Move(new Vector2(0, 0));
+        if (this.playerStateMachine.currentState.GetType() != typeof(PlayerCombatState))
+        {
+            playerStateMachine.ChangeState(new PlayerCombatState());
+            startDashpos = this.transform.position;
+            //stop active movement on combat entery
+            Move(new Vector2(0, 0));
+        }
     }
 
     public void ExitCombat()
@@ -113,6 +133,10 @@ public class Hero : MonoBehaviour, IDamageable<int>
     void OnCollisionEnter2D(Collision2D other)
     {
         Debug.Log("COLLISION");
+    }
+
+    void OnDestroy() {
+        EnemyManager.enemyRegisteredDelegate -= EnterCombat;
     }
 
 }

@@ -1,4 +1,4 @@
-﻿using System.Collections;
+﻿ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Assertions;
@@ -29,9 +29,4 @@ public class MusicManager : MonoBehaviour
         simpleMusicPlayer.LoadSong(masterTrack.koreography,0, true);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

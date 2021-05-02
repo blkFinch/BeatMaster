@@ -6,6 +6,8 @@ using SonicBloom.Koreo;
 
 public class Enemy : MonoBehaviour, IDamageable<float>, IKillable
 {
+    [SerializeField]
+    private float damageableDelay = 1f;
     public float currentHealth;
     public float atk;
     public EnemyObject template;
@@ -17,7 +19,7 @@ public class Enemy : MonoBehaviour, IDamageable<float>, IKillable
     [SerializeField]
     private EnemyHealthText hpDisplay;
     private EnemyMovement mvt;
-     private bool isDamageable = false;
+    private bool isDamageable = false;
 
     //Delegate for notifying enemy damaged
     public delegate void OnEnemyDamaged(float dam);
@@ -35,7 +37,8 @@ public class Enemy : MonoBehaviour, IDamageable<float>, IKillable
         hpDisplay.UpdateHpDisplay(currentHealth);
     }
 
-    void Start() {     
+    void Start()
+    {
         Koreographer.Instance.RegisterForEvents(damageableTag, onDamageableEvent);
     }
 
@@ -45,7 +48,7 @@ public class Enemy : MonoBehaviour, IDamageable<float>, IKillable
         if (enemyDamagedDelegate != null)
             enemyDamagedDelegate(damageTaken);
 
-        if(isDamageable)
+        if (isDamageable)
             currentHealth -= damageTaken;
 
         if (currentHealth <= 0)
@@ -58,10 +61,13 @@ public class Enemy : MonoBehaviour, IDamageable<float>, IKillable
     }
 
     void onDamageableEvent(KoreographyEvent evt)
-        {
-            if(mvt.State == EnemyState.COMBAT)
-                Instantiate(targetRingPrefab, this.transform.position, Quaternion.identity);
+    {
+        if (mvt.State == EnemyState.COMBAT){
+
+            Instantiate(targetRingPrefab, this.transform.position, Quaternion.identity);
+            StartCoroutine("CanHitWindow");
         }
+    }
 
     //Remember to unregister all listeners here
     public void Kill()
@@ -73,29 +79,37 @@ public class Enemy : MonoBehaviour, IDamageable<float>, IKillable
     {
         if (other.gameObject.tag == "Player")
         {
-            
-            if (mvt.State == EnemyState.IDLE)
+
+            if (mvt.State != EnemyState.COMBAT)
             {
                 mvt.EnterCombat();
+                EnemyManager.active.RegisterCombatEnemy(this);
             }
-            EnemyManager.active.RegisterCombatEnemy(this);
-            Hero.active.EnterCombat();
         }
     }
 
-    public void DamageableEvent(){
+    public void DamageableEvent()
+    {
         Debug.Log("damagable event");
         StartCoroutine("CanHitWindow");
     }
 
     IEnumerator CanHitWindow()
-        {
-            isDamageable = true;
-            spriteRenderer.color = Color.green;
-            yield return new WaitForSeconds(SongInfo.active.secondsPerBeat);
-            isDamageable = false;
-            spriteRenderer.color = Color.white;
-        }
+    {
+        //Wait for ring to shrink. Defaults to one beat before become damageable
+        yield return new WaitForSeconds(SongInfo.active.secondsPerBeat * damageableDelay);
+
+        isDamageable = true;
+        spriteRenderer.color = Color.green;
+        yield return new WaitForSeconds(SongInfo.active.secondsPerBeat);
+        isDamageable = false;
+        spriteRenderer.color = Color.white;
+    }
+
+    void OnDestroy() {
+        EnemyManager.active.DeregisterEnemy(this);
+        Koreographer.Instance.UnregisterForAllEvents(this);
+    }
 
 }
 

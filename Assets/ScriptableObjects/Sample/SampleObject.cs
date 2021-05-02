@@ -7,7 +7,7 @@ using SonicBloom.Koreo;
 public class SampleObject : ScriptableObject
 {
     public string sampleName;
-    public float bps = 120f;
+    public float bpm = 120f;
 
     public CTInstrument instrument;
 

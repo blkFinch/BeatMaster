@@ -12,6 +12,11 @@ public class SongInfo : MonoBehaviour
 
     void Awake() {
         active = this;
+    }
+
+    void Start() {
+        if(MusicManager.active)
+            bpm = MusicManager.active.masterTrack.bpm;
         secondsPerBeat = (this.bpm / this.beatsPerBar) / 60;
     }
 

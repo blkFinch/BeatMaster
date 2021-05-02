@@ -16,7 +16,7 @@ public interface IPlayerState
 
 public class PlayerStateMachine 
 {
-    IPlayerState currentState;
+    public IPlayerState currentState;
     
      public void ChangeState(IPlayerState newState)
     {

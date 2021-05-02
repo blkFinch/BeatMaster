@@ -10,9 +10,11 @@ public class SyncedSample : MonoBehaviour
     void Awake() {
         audioSource = GetComponent<AudioSource>();
     }
+    void Start() {
+        PlaySynced();
+    }
     
-    public void PlaySynced(AudioClip clip){
-        this.clip = clip;
+    public void PlaySynced(){
         audioSource.clip = this.clip;
         audioSource.Play();
     }

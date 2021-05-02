@@ -36,7 +36,7 @@ public class IsometricPlayerMovement : MonoBehaviour
     {
         animatorBusy = true;
          // Uncomment this to have hero reset where she starts her dash from
-        startDashpos = transform.position;
+        startDashpos = Hero.active.startDashpos;
 
         //set the target position right in front of target
         Vector3 targetPos = target.gameObject.transform.position - target.gameObject.transform.up;
