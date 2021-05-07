@@ -143,9 +143,9 @@ MonoBehaviour:
   damageableDelay: 1
   currentHealth: 0
   atk: 0
-  template: {fileID: 11400000, guid: eccdcdd849a4401459012109d2124914, type: 2}
+  template: {fileID: 11400000, guid: b7f8ef5c0ee4a1a46a6f891da9f3e92e, type: 2}
   type: 2
-  targetRingPrefab: {fileID: 3213571436267067763, guid: ebef23477678f884c95fffabb4018429, type: 3}
+  targetRingPrefab: {fileID: 3213571436267067763, guid: a796098897d0c534489a562e93c08ad0, type: 3}
   damageableTag: damage_on_ones
   hpDisplay: {fileID: 1009572363589976443}
 --- !u!114 &7378879098413661648
@@ -162,7 +162,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   atkSound: {fileID: 8300000, guid: f1ec442919bcf9f4fa88bbd8b7f3886a, type: 3}
   moveTime: 0.5
-  idlePattern: 0300000007000000
+  idlePattern: 0000000004000000
   attackZone: {fileID: 3722962916683513264, guid: b91c1c6afcc332041ac6738ca94add5a, type: 3}
   moveEventTag: bar_count
   atkEventTag: third_beat

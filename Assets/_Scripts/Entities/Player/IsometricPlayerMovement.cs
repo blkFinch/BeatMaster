@@ -41,13 +41,11 @@ public class IsometricPlayerMovement : MonoBehaviour
         //set the target position right in front of target
         Vector3 targetPos = target.gameObject.transform.position - target.gameObject.transform.up;
         isometricPlayerRenderer.SetAttackDirection(targetPos);
-        StartCoroutine(DashMove(targetPos, startDashpos));
+        StartCoroutine(DashMove(targetPos, startDashpos, target.GetComponent<Enemy>()));
     }
 
     //Animate untargeted attack
     public void AnimateAttack(){
-        Debug.Log("IsoMove calls Iso Render");
-
         animatorBusy = true;
         isometricPlayerRenderer.SetAttackDirection(movementVector);
         StartCoroutine(AttackAnimationPause());
@@ -63,23 +61,28 @@ public class IsometricPlayerMovement : MonoBehaviour
         }
     }
 
-    //Set this to pause for one beat. Should get BPM from MusicManager
-    //0.5 sec is one beat for 120bps
     private IEnumerator AttackAnimationPause(){
-        yield return new WaitForSeconds(0.5f);
+        yield return new WaitForSeconds(SongInfo.active.secondsPerBeat);
         animatorBusy = false;
     }
 
-    //TODO: refactor this move to fit with beat
-    //Dashes to target, waits 0.5 secs, dash back
-    //0.5 is one beat for 120 bpm
-    private IEnumerator DashMove(Vector3 end, Vector3 start)
+    private IEnumerator DashMove(Vector3 end, Vector3 start, Enemy enemy = null)
     {
         transform.position = end;
-        rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        // rb.constraints = RigidbodyConstraints2D.FreezeAll;
         yield return new WaitForSeconds(SongInfo.active.secondsPerBeat);
         transform.position = start;
-        rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        // rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        // if(enemy){ enemy.Damage(Hero.active.stats.Atk); }
         animatorBusy = false;
+    }
+
+    public void FreezeConstraints(bool doFreeze){
+        if(doFreeze){
+            rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        }   
+        else{
+            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        }   
     }
 }

@@ -18,7 +18,7 @@ namespace Dungeon{
         
         public void LoadRoom(int index){
             Destroy(activeRoom);
-            activeRoom = Instantiate(rooms[index], this.transform.position, Quaternion.identity);
+            activeRoom = Instantiate(rooms[index], Vector3.zero, Quaternion.identity);
         }
     }
 }

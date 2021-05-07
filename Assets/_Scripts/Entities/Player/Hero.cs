@@ -123,12 +123,14 @@ public class Hero : MonoBehaviour, IDamageable<int>
             startDashpos = this.transform.position;
             //stop active movement on combat entery
             Move(new Vector2(0, 0));
+            isoMovement.FreezeConstraints(true);
         }
     }
 
     public void ExitCombat()
     {
         playerStateMachine.ChangeState(new PlayerRoamState());
+        isoMovement.FreezeConstraints(false);
     }
     void OnCollisionEnter2D(Collision2D other)
     {
@@ -137,6 +139,14 @@ public class Hero : MonoBehaviour, IDamageable<int>
 
     void OnDestroy() {
         EnemyManager.enemyRegisteredDelegate -= EnterCombat;
+    }
+
+    public bool IsInCombat(){
+        if(playerStateMachine.currentState.GetType() == typeof(PlayerCombatState)){
+            return true;
+        }else{
+            return false;
+        }
     }
 
 }

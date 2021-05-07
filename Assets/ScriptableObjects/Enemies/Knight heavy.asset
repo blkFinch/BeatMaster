@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 08b0d0e5d1f0cb042b90d1888187333c, type: 3}
   m_Name: Knight heavy
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 50
   atk: 2
   sprite: {fileID: 0}
   enemyName: Knight

@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.Assertions;
 using SonicBloom.Koreo;
+using TMPro;
 
 
 public class Enemy : MonoBehaviour, IDamageable<float>, IKillable
@@ -17,7 +18,6 @@ public class Enemy : MonoBehaviour, IDamageable<float>, IKillable
 
     private SpriteRenderer spriteRenderer;
     [SerializeField]
-    private EnemyHealthText hpDisplay;
     private EnemyMovement mvt;
     private bool isDamageable = false;
 
@@ -25,21 +25,29 @@ public class Enemy : MonoBehaviour, IDamageable<float>, IKillable
     public delegate void OnEnemyDamaged(float dam);
     public static OnEnemyDamaged enemyDamagedDelegate;
 
+    private TextMeshPro text;
+
     void Awake()
     {
         Assert.IsNotNull(template);
 
         spriteRenderer = this.GetComponent<SpriteRenderer>();
         spriteRenderer.sprite = template.sprite;
-        currentHealth = template.maxHealth;
+        
         mvt = this.GetComponent<EnemyMovement>();
         // atk = template.Atk;
-        hpDisplay.UpdateHpDisplay(currentHealth);
+        // hpDisplay.UpdateHpDisplay(currentHealth);
+        text = GetComponentInChildren<TextMeshPro>();
+        Debug.Log("awake called");
     }
 
     void Start()
     {
         Koreographer.Instance.RegisterForEvents(damageableTag, onDamageableEvent);
+        EnemyManager.enemyRegisteredDelegate += onEnemyRegisteredEvent;
+
+        currentHealth = template.maxHealth;
+        text.text = currentHealth.ToString();
     }
 
     public void Damage(float damageTaken)
@@ -55,9 +63,9 @@ public class Enemy : MonoBehaviour, IDamageable<float>, IKillable
         {
             Debug.Log("current health: " + currentHealth + " killing obj");
             Kill();
+        }else{
+            text.text = currentHealth.ToString();
         }
-
-        hpDisplay.UpdateHpDisplay(currentHealth);
     }
 
     void onDamageableEvent(KoreographyEvent evt)
@@ -66,6 +74,12 @@ public class Enemy : MonoBehaviour, IDamageable<float>, IKillable
 
             Instantiate(targetRingPrefab, this.transform.position, Quaternion.identity);
             StartCoroutine("CanHitWindow");
+        }
+    }
+
+    void onEnemyRegisteredEvent(){
+        if(this.mvt.State != EnemyState.COMBAT){
+            this.mvt.EnterAgro();
         }
     }
 

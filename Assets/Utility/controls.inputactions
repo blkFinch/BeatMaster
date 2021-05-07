@@ -44,6 +44,22 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "Press,Press(behavior=1)"
+                },
+                {
+                    "name": "Action",
+                    "type": "Button",
+                    "id": "1c22b4a0-3ed3-43b7-b6cd-68f4212d1b1d",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press,Press(behavior=1)"
+                },
+                {
+                    "name": "Green",
+                    "type": "Button",
+                    "id": "a4a40970-2468-47ec-a819-1a797f13ed9a",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Press,Press(behavior=1)"
                 }
             ],
             "bindings": [
@@ -264,6 +280,72 @@
                     "processors": "",
                     "groups": ";Keyboard&Mouse",
                     "action": "Block",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "671db24d-83cd-4830-8217-f61194492a78",
+                    "path": "<Keyboard>/anyKey",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "cd62a804-794b-48c1-be1c-245b00751662",
+                    "path": "<Gamepad>/buttonEast",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a002aa1c-8f1c-495d-94b0-20b2e6a98864",
+                    "path": "<Gamepad>/leftShoulder",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "0b1fc290-6738-4325-8491-9d85894b8392",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e3ea8b02-8b1f-4fc8-ba57-74f1fa2d2c3d",
+                    "path": "<Gamepad>/buttonSouth",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Green",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "d6168f0e-012b-4a6c-8ded-860a489e7fc6",
+                    "path": "<Keyboard>/downArrow",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "",
+                    "action": "Green",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
