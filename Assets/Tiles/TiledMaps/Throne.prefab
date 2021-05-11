@@ -1301,6 +1301,10 @@ PrefabInstance:
       value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 3479197715444257862, guid: 1dd723999aeb7f746995865636277a7f, type: 3}
+      propertyPath: template
+      value: 
+      objectReference: {fileID: 11400000, guid: eccdcdd849a4401459012109d2124914, type: 2}
+    - target: {fileID: 3479197715444257862, guid: 1dd723999aeb7f746995865636277a7f, type: 3}
       propertyPath: damageableTag
       value: damage_before_three
       objectReference: {fileID: 0}

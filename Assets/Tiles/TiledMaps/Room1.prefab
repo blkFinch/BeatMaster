@@ -1399,6 +1399,10 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3479197715444257862, guid: 1dd723999aeb7f746995865636277a7f, type: 3}
+      propertyPath: damageableTag
+      value: damage_before_three
+      objectReference: {fileID: 0}
+    - target: {fileID: 3479197715444257862, guid: 1dd723999aeb7f746995865636277a7f, type: 3}
       propertyPath: targetRingPrefab
       value: 
       objectReference: {fileID: 3213571436267067763, guid: d230c8bcf6e084c4f9d235bb252d5a47, type: 3}
@@ -1530,7 +1534,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6502079234069822678, guid: 272412f2ec257f54eadcd6ffa1e8ed79, type: 3}
       propertyPath: displayString
-      value: Block when you aren't attacking
+      value: Attack without blocking to deal more damage
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 272412f2ec257f54eadcd6ffa1e8ed79, type: 3}
@@ -1552,7 +1556,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3479197715444257862, guid: 1dd723999aeb7f746995865636277a7f, type: 3}
       propertyPath: damageableTag
-      value: damage_before_three
+      value: damage_on_ones
       objectReference: {fileID: 0}
     - target: {fileID: 3479197715444257862, guid: 1dd723999aeb7f746995865636277a7f, type: 3}
       propertyPath: targetRingPrefab

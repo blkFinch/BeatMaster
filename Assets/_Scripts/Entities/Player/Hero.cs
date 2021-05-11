@@ -30,7 +30,17 @@ public class Hero : MonoBehaviour, IDamageable<int>
     public GameObject syncedBlockLoop;
     private GameObject activeBlockLoop;
 
-
+    public int GetAtk()
+    {
+        if (!isBlocking)
+        {
+            return stats.Atk;
+        }
+        else
+        {
+            return stats.Atk / 2;
+        }
+    }
     void Awake()
     {
         if (active == null) { active = this; }
@@ -82,11 +92,12 @@ public class Hero : MonoBehaviour, IDamageable<int>
         }
     }
 
-    public void Heal(int health){
+    public void Heal(int health)
+    {
         currentHealth += health;
 
         if (playerHealthBar != null)
-                playerHealthBar.UpdateBar(currentHealth, stats.Hp);
+            playerHealthBar.UpdateBar(currentHealth, stats.Hp);
     }
 
     public void Move(Vector2 movement)
@@ -125,13 +136,9 @@ public class Hero : MonoBehaviour, IDamageable<int>
 
     public void TargetedAttack(GameObject target)
     {
-        Debug.Log("TARGETED ATTACK");
-        if (!isBlocking)
-        {
-            audio.clip = heroAtkSound;
-            audio.Play();
-            isoMovement.AnimateTargetedAttack(target, this.transform.position);
-        }
+        audio.clip = heroAtkSound;
+        audio.Play();
+        isoMovement.AnimateTargetedAttack(target, this.transform.position);
     }
 
     public void EnterCombat()

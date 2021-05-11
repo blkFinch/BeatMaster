@@ -70,7 +70,7 @@ public class IsometricPlayerMovement : MonoBehaviour
     {
         transform.position = end;
         // rb.constraints = RigidbodyConstraints2D.FreezeAll;
-        if(enemy){ enemy.Damage(Hero.active.stats.Atk); }
+        if(enemy){ enemy.Damage(Hero.active.GetAtk()); }
         yield return new WaitForSeconds(SongInfo.active.secondsPerBeat);
         transform.position = start;
         // rb.constraints = RigidbodyConstraints2D.FreezeRotation;
