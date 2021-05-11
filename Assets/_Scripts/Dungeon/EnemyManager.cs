@@ -25,6 +25,7 @@ public class EnemyManager : MonoBehaviour
     }
 
     public void RegisterCombatEnemy(Enemy enemy){
+        Debug.Log("Registering enemy: " + enemy);
         switch(enemy.type){
             case AttackType.BLUE:
                 blueEnemy = enemy;

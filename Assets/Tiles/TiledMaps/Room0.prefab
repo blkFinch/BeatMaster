@@ -1,5 +1,49 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &103210730
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 103210731}
+  - component: {fileID: 103210732}
+  m_Layer: 0
+  m_Name: popuptext
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &103210731
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 103210730}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 7424691589981354014}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &103210732
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 103210730}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e67b22fb59e06e47a28df350f9124d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  displayString: Attack On The Beat
 --- !u!1 &7424691589981354013
 GameObject:
   m_ObjectHideFlags: 0
@@ -30,6 +74,7 @@ Transform:
   - {fileID: 5283386936432023572}
   - {fileID: 7424691590206215699}
   - {fileID: 6287405832472242056}
+  - {fileID: 103210731}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -1158,9 +1203,21 @@ PrefabInstance:
     m_TransformParent: {fileID: 7424691589981354014}
     m_Modifications:
     - target: {fileID: 3479197715444257862, guid: 1dd723999aeb7f746995865636277a7f, type: 3}
+      propertyPath: type
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3479197715444257862, guid: 1dd723999aeb7f746995865636277a7f, type: 3}
+      propertyPath: template
+      value: 
+      objectReference: {fileID: 11400000, guid: eccdcdd849a4401459012109d2124914, type: 2}
+    - target: {fileID: 3479197715444257862, guid: 1dd723999aeb7f746995865636277a7f, type: 3}
       propertyPath: damageableTag
       value: damage_on_ones
       objectReference: {fileID: 0}
+    - target: {fileID: 3479197715444257862, guid: 1dd723999aeb7f746995865636277a7f, type: 3}
+      propertyPath: targetRingPrefab
+      value: 
+      objectReference: {fileID: 3213571436267067763, guid: b721dfc42fe551b41930fb1cf5485283, type: 3}
     - target: {fileID: 3479197715444257863, guid: 1dd723999aeb7f746995865636277a7f, type: 3}
       propertyPath: m_RootOrder
       value: 2

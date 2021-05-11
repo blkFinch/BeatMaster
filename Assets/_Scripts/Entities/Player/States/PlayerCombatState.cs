@@ -33,6 +33,7 @@ public class PlayerCombatState : IPlayerState
 
     public void ProcessInputRed()
     {
+        Debug.Log("RED");
         if ( redTarget = EnemyManager.active.GetRedEnemy())
             Hero.active.TargetedAttack(redTarget.gameObject);
         // redTarget.OnPlayerAttack();

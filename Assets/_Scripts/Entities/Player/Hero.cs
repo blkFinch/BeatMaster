@@ -125,6 +125,7 @@ public class Hero : MonoBehaviour, IDamageable<int>
 
     public void TargetedAttack(GameObject target)
     {
+        Debug.Log("TARGETED ATTACK");
         if (!isBlocking)
         {
             audio.clip = heroAtkSound;
