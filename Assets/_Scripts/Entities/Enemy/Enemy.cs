@@ -52,13 +52,15 @@ public class Enemy : MonoBehaviour, IDamageable<float>, IKillable
 
     public void Damage(float damageTaken)
     {
+        Debug.Log("Enemy DAMAGED");
         //Only fire delegate if there are registered listeners
         if (enemyDamagedDelegate != null)
             enemyDamagedDelegate(damageTaken);
 
         if (isDamageable)
             currentHealth -= damageTaken;
-
+        else 
+            Debug.LogError("ENEMY NOT DAMAGEABLE");
         if (currentHealth <= 0)
         {
             Debug.Log("current health: " + currentHealth + " killing obj");
@@ -114,9 +116,11 @@ public class Enemy : MonoBehaviour, IDamageable<float>, IKillable
         yield return new WaitForSeconds(SongInfo.active.secondsPerBeat * damageableDelay);
 
         isDamageable = true;
+        Debug.Log("ENEMY IS DAM");
         spriteRenderer.color = Color.green;
         yield return new WaitForSeconds(SongInfo.active.secondsPerBeat);
         isDamageable = false;
+        Debug.Log("ENEMY NOT DAM");
         spriteRenderer.color = Color.white;
     }
 

@@ -66,14 +66,15 @@ public class IsometricPlayerMovement : MonoBehaviour
         animatorBusy = false;
     }
 
-    private IEnumerator DashMove(Vector3 end, Vector3 start, Enemy enemy = null)
+    private IEnumerator DashMove(Vector3 end, Vector3 start, Enemy enemy)
     {
         transform.position = end;
         // rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        if(enemy){ enemy.Damage(Hero.active.stats.Atk); }
         yield return new WaitForSeconds(SongInfo.active.secondsPerBeat);
         transform.position = start;
         // rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-        // if(enemy){ enemy.Damage(Hero.active.stats.Atk); }
+        
         animatorBusy = false;
     }
 

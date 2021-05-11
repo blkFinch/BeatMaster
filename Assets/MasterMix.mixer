@@ -20,6 +20,7 @@ AudioMixerController:
   - guids:
     - 803275e8143cd46409880a42fbd90828
     - 8245e887ee1fe8b49ae524136f85871e
+    - e8d13e50bbd9c954d9f9b7a6dcc009a1
     name: View
   m_CurrentViewIndex: 0
   m_TargetSnapshot: {fileID: 24500006}
@@ -34,6 +35,7 @@ AudioMixerGroupController:
   m_GroupID: 803275e8143cd46409880a42fbd90828
   m_Children:
   - {fileID: 2640681895292781500}
+  - {fileID: 8011552402299493229}
   m_Volume: 7aeae17118da9374ab575c03ce7d699c
   m_Pitch: 4770f967bc8b7d74a8531eb93a96e033
   m_Send: 00000000000000000000000000000000
@@ -72,8 +74,23 @@ AudioMixerSnapshotController:
     7aeae17118da9374ab575c03ce7d699c: -0.16685188
     7eae9f322cb4d92489fbc93b14756a8d: -22.6
     d5485a4d37f2dfe45a32c788bdcda080: 4.9
+    a54d1dfd2c8087b41b94275858b476b6: -5.7224774
     1c33596f658b7e3429736dec24adf249: -6.133707
   m_TransitionOverrides: {}
+--- !u!244 &725194815850167244
+AudioMixerEffectController:
+  m_ObjectHideFlags: 3
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: 
+  m_EffectID: 62889618727ff4b4b9a0908cd00a43aa
+  m_EffectName: Attenuation
+  m_MixLevel: 214bfa9fb9309c44a88ead6100f00b0e
+  m_Parameters: []
+  m_SendTarget: {fileID: 0}
+  m_EnableWetMix: 0
+  m_Bypass: 0
 --- !u!244 &1819256019951806805
 AudioMixerEffectController:
   m_ObjectHideFlags: 3
@@ -103,6 +120,25 @@ AudioMixerGroupController:
   m_Send: 00000000000000000000000000000000
   m_Effects:
   - {fileID: 1819256019951806805}
+  m_UserColorIndex: 1
+  m_Mute: 0
+  m_Solo: 0
+  m_BypassEffects: 0
+--- !u!243 &8011552402299493229
+AudioMixerGroupController:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Player
+  m_AudioMixer: {fileID: 24100000}
+  m_GroupID: e8d13e50bbd9c954d9f9b7a6dcc009a1
+  m_Children: []
+  m_Volume: a54d1dfd2c8087b41b94275858b476b6
+  m_Pitch: 111f92b7370fbd8488ca8fc94ab8e9b0
+  m_Send: 00000000000000000000000000000000
+  m_Effects:
+  - {fileID: 725194815850167244}
   m_UserColorIndex: 0
   m_Mute: 0
   m_Solo: 0

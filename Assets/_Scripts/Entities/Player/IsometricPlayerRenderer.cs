@@ -49,22 +49,22 @@ public class IsometricPlayerRenderer : MonoBehaviour
         {
             case 0:
                 animator.Play("Attack NW");
-                Instantiate(attackZone, this.transform.position - transform.right + transform.up, Quaternion.identity);
+                // Instantiate(attackZone, this.transform.position - transform.right + transform.up, Quaternion.identity);
                 break;
 
             case 1:
                 animator.Play("Attack SW");
-                Instantiate(attackZone, this.transform.position - transform.right - transform.up, Quaternion.identity);
+                // Instantiate(attackZone, this.transform.position - transform.right - transform.up, Quaternion.identity);
                 break;
 
             case 2:
                 animator.Play("Attack SE");
-                Instantiate(attackZone, this.transform.position + transform.right - transform.up, Quaternion.identity);
+                // Instantiate(attackZone, this.transform.position + transform.right - transform.up, Quaternion.identity);
                 break;
 
             case 3:
                 animator.Play("Attack NE");
-                Instantiate(attackZone, this.transform.position + transform.right + transform.up, Quaternion.identity);
+                // Instantiate(attackZone, this.transform.position + transform.right + transform.up, Quaternion.identity);
                 break;
         }
     }

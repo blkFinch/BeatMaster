@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 //Singleton instance of player character 
 public class Hero : MonoBehaviour, IDamageable<int>
@@ -22,13 +23,13 @@ public class Hero : MonoBehaviour, IDamageable<int>
     public PlayerStateMachine playerStateMachine;
     private bool isBlocking;
     public bool IsBlocking { get => isBlocking; }
-     public Vector3 startDashpos; //position of character before animation
+    public Vector3 startDashpos; //position of character before animation
 
     //SOUNDS
     public AudioClip heroAtkSound;
     public GameObject syncedBlockLoop;
     private GameObject activeBlockLoop;
-   
+
 
     void Awake()
     {
@@ -72,12 +73,20 @@ public class Hero : MonoBehaviour, IDamageable<int>
                 playerHealthBar.UpdateBar(currentHealth, stats.Hp);
             Debug.Log("Damaged for: " + damage);
         }
-        Debug.Log("Damage blocked");
 
         if (currentHealth < 0)
         {
             Destroy(this.gameObject);
+            SceneManager.LoadScene("Title");
+
         }
+    }
+
+    public void Heal(int health){
+        currentHealth += health;
+
+        if (playerHealthBar != null)
+                playerHealthBar.UpdateBar(currentHealth, stats.Hp);
     }
 
     public void Move(Vector2 movement)
@@ -89,30 +98,39 @@ public class Hero : MonoBehaviour, IDamageable<int>
     {
         isBlocking = blockValue;
         //plays block animation if true idle if false
-        if (blockValue){
+        if (blockValue)
+        {
             // spriteRenderer.sprite = blockSprite;
             isoMovement.AnimateBlock(true);
             activeBlockLoop = Instantiate(syncedBlockLoop, transform.position, Quaternion.identity);
         }
-        else{
+        else
+        {
             isoMovement.AnimateBlock(false);
             Destroy(activeBlockLoop);
         }
-            
+
     }
 
     public void Attack()
     {
-        audio.clip = heroAtkSound;
-        audio.Play();
-        isoMovement.AnimateAttack();
+        if (!isBlocking)
+        {
+            audio.clip = heroAtkSound;
+            audio.Play();
+            isoMovement.AnimateAttack();
+        }
+
     }
 
     public void TargetedAttack(GameObject target)
     {
-        audio.clip = heroAtkSound;
-        audio.Play();
-        isoMovement.AnimateTargetedAttack(target, this.transform.position);
+        if (!isBlocking)
+        {
+            audio.clip = heroAtkSound;
+            audio.Play();
+            isoMovement.AnimateTargetedAttack(target, this.transform.position);
+        }
     }
 
     public void EnterCombat()
@@ -137,14 +155,19 @@ public class Hero : MonoBehaviour, IDamageable<int>
         Debug.Log("COLLISION");
     }
 
-    void OnDestroy() {
+    void OnDestroy()
+    {
         EnemyManager.enemyRegisteredDelegate -= EnterCombat;
     }
 
-    public bool IsInCombat(){
-        if(playerStateMachine.currentState.GetType() == typeof(PlayerCombatState)){
+    public bool IsInCombat()
+    {
+        if (playerStateMachine.currentState.GetType() == typeof(PlayerCombatState))
+        {
             return true;
-        }else{
+        }
+        else
+        {
             return false;
         }
     }

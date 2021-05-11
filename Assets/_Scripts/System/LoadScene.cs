@@ -22,6 +22,7 @@ public class LoadScene : MonoBehaviour
 
     public void OnGreen(){
         SceneManager.LoadScene(sceneToLoad);
+        Destroy(this.gameObject);
     }
 
     public void OnBlock(){
